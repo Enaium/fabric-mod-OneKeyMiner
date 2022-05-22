@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "onekeyminer",
+  "version": "${version}",
+  "name": "Example Mod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Enaium-FabricMC/OneKeyMinera",
+    "sources": "https://github.com/Enaium-FabricMC/OneKeyMinera",
+    "issues": "https://github.com/Enaium-FabricMC/OneKeyMinera/issues"
+  },
+  "license": "Apache-2.0",
+  "icon": "assets/onekeyminer/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "cn.enaium.onekeyminer.OneKeyMiner"
+    ]
+  },
+  "mixins": [
+    "onekeyminer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "~1.18.2",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

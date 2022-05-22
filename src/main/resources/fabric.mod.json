@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "id": "onekeyminer",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "One Key Miner",
+  "description": "This mod helps mine ore or other blocks by mining blocks in a chain reaction.",
   "authors": [
     "Me!"
   ],
   "contact": {
-    "homepage": "https://github.com/Enaium-FabricMC/OneKeyMinera",
-    "sources": "https://github.com/Enaium-FabricMC/OneKeyMinera",
-    "issues": "https://github.com/Enaium-FabricMC/OneKeyMinera/issues"
+    "homepage": "https://github.com/Enaium-FabricMC/OneKeyMiner",
+    "sources": "https://github.com/Enaium-FabricMC/OneKeyMiner",
+    "issues": "https://github.com/Enaium-FabricMC/OneKeyMiner/issues"
   },
   "license": "Apache-2.0",
   "icon": "assets/onekeyminer/icon.png",

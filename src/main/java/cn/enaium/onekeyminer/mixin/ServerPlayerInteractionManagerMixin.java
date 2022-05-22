@@ -16,26 +16,20 @@
 package cn.enaium.onekeyminer.mixin;
 
 import cn.enaium.onekeyminer.OneKeyMiner;
-import cn.enaium.onekeyminer.model.Config;
 import cn.enaium.onekeyminer.util.BlockUtil;
-import com.google.gson.Gson;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.*;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.util.math.BlockPos;
-import org.apache.commons.io.IOUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Mixin(ServerPlayerInteractionManager.class)
 public abstract class ServerPlayerInteractionManagerMixin {
@@ -51,23 +45,18 @@ public abstract class ServerPlayerInteractionManagerMixin {
         if (stack != null) {
             var canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
             if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && MinecraftClient.getInstance().player.isSneaking()) {
-                Config config;
-                try {
-                    config = new Gson().fromJson(IOUtils.toString(Objects.requireNonNull(OneKeyMiner.class.getResourceAsStream("/config.json")), StandardCharsets.UTF_8), Config.class);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                var config = OneKeyMiner.config;
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {
-                    list.addAll(List.of(config.axe));
+                    list.addAll(config.axe);
                 } else if (stack.getItem() instanceof HoeItem) {
-                    list.addAll(List.of(config.hoe));
+                    list.addAll(config.hoe);
                 } else if (stack.getItem() instanceof PickaxeItem) {
-                    list.addAll(List.of(config.pickaxe));
+                    list.addAll(config.pickaxe);
                 } else if (stack.getItem() instanceof ShovelItem) {
-                    list.addAll(List.of(config.shovel));
+                    list.addAll(config.shovel);
                 } else if (stack.getItem() instanceof ShearsItem) {
-                    list.addAll(List.of(config.shears));
+                    list.addAll(config.shears);
                 }
 
                 searched.clear();

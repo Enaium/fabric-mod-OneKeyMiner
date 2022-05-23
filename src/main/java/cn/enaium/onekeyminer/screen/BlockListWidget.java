@@ -17,7 +17,6 @@ package cn.enaium.onekeyminer.screen;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -36,17 +35,17 @@ public class BlockListWidget {
         }
 
         @Override
-        public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+        public void render(int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
             ItemStack itemStack = new ItemStack(Registry.ITEM.get(new Identifier(name)));
             if (!itemStack.isEmpty()) {
                 MinecraftClient.getInstance().getItemRenderer().renderGuiItemIcon(itemStack, x, y);
-                textRenderer.draw(matrices, new TranslatableText(itemStack.getTranslationKey()).getString(),
-                        x + entryWidth - textRenderer.getWidth(new TranslatableText(itemStack.getTranslationKey()).getString()),
+                textRenderer.draw(new TranslatableText(itemStack.getTranslationKey()).getString(),
+                        x + entryWidth - textRenderer.getStringWidth(new TranslatableText(itemStack.getTranslationKey()).getString()),
                         y + textRenderer.fontHeight, 0xFFFFFFFF);
             }
-            textRenderer.draw(matrices, name, x + entryWidth - textRenderer.getWidth(name), y, 0xFFFFFFFF);
-            super.render(matrices, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
+            textRenderer.draw(name, x + entryWidth - textRenderer.getStringWidth(name), y, 0xFFFFFFFF);
+            super.render(index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta);
         }
     }
 }

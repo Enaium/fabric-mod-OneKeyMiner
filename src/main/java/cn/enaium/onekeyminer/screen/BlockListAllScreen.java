@@ -21,7 +21,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
@@ -49,9 +48,9 @@ public class BlockListAllScreen extends Screen {
 
     @Override
     public void init() {
-        entryListWidget = new ListWidget<>(client, width, height, 50, height - 50, 24);
-        textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, new LiteralText(""));
-        addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.add"), e -> {
+        entryListWidget = new ListWidget<>(minecraft, width, height, 50, height - 50, 24);
+        textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, "");
+        addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.add").asString(), e -> {
             BlockListWidget.Entry selectedOrNull = entryListWidget.getSelected();
             if (selectedOrNull != null) {
                 list.add(selectedOrNull.name);
@@ -64,8 +63,8 @@ public class BlockListAllScreen extends Screen {
             entryListWidget.replaceEntries(get());
             entryListWidget.setSelected(null);
         });
-        addChild(entryListWidget);
-        addChild(textFieldWidget);
+        children.add(entryListWidget);
+        children.add(textFieldWidget);
         addButton(addButton);
         super.init();
     }
@@ -81,10 +80,10 @@ public class BlockListAllScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
+    public void render(int mouseX, int mouseY, float delta) {
+        renderBackground();
         addButton.active = entryListWidget.getSelected() != null;
-        entryListWidget.render(matrices, mouseX, mouseY, delta);
-        super.render(matrices, mouseX, mouseY, delta);
+        entryListWidget.render(mouseX, mouseY, delta);
+        super.render(mouseX, mouseY, delta);
     }
 }

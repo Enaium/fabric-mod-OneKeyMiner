@@ -58,8 +58,8 @@ public class ListWidget<T extends ListWidget.Entry<T>> extends EntryListWidget<T
         public boolean hovered = false;
 
         @Override
-        public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
-            this.hovered = hovered;
+        public void render(int index, int y, int x, int width, int height, int mouseX, int mouseY, boolean hovering, float delta) {
+            this.hovered = hovering;
         }
     }
 }

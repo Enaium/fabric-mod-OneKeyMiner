@@ -43,7 +43,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
     private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
 
-        ItemStack stack = MinecraftClient.getInstance().player.inventory.getStack(MinecraftClient.getInstance().player.inventory.selectedSlot);
+        ItemStack stack = MinecraftClient.getInstance().player.inventory.getInvStack(MinecraftClient.getInstance().player.inventory.selectedSlot);
         if (stack != null) {
             boolean canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
             if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && MinecraftClient.getInstance().player.isSneaking()) {
@@ -75,7 +75,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
                 for (int z = -radius; z <= radius; z++) {
                     BlockPos newBlockPos = new BlockPos(blockPos.getX() + x, blockPos.getY() + y, blockPos.getZ() + z);
                     BlockState blockState = BlockUtil.getBlockState(newBlockPos);
-                    String name = BlockUtil.getName(blockState.getBlock().getLootTableId());
+                    String name = BlockUtil.getName(blockState.getBlock().getDropTableId());
 
                     if (blocks.contains(name) && !searched.contains(newBlockPos) && searched.size() < limit) {
                         searched.add(newBlockPos);

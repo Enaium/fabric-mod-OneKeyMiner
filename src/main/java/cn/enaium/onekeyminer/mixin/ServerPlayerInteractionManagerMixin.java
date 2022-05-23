@@ -40,8 +40,8 @@ public abstract class ServerPlayerInteractionManagerMixin {
 
     private final List<BlockPos> searched = new ArrayList<>();
 
-    @Inject(at = @At(value = "HEAD"), method = "finishMining")
-    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
+    @Inject(at = @At(value = "HEAD"), method = "method_21717")
+    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, CallbackInfo ci) {
 
         ItemStack stack = MinecraftClient.getInstance().player.inventory.getInvStack(MinecraftClient.getInstance().player.inventory.selectedSlot);
         if (stack != null) {

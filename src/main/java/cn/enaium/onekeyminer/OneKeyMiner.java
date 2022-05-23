@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.brigadier.Command;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.command.CommandManager;
 import org.apache.commons.io.FileUtils;
@@ -39,7 +39,7 @@ public class OneKeyMiner implements ModInitializer {
     public void onInitialize() {
         LOGGER.info("Hello OneKeyMiner world!");
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("onekeyminer").executes(context -> {
                 MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
                 return Command.SINGLE_SUCCESS;

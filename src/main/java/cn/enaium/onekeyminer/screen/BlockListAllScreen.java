@@ -22,8 +22,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class BlockListAllScreen extends Screen {
     private final List<String> list;
 
     public BlockListAllScreen(Screen parent, List<String> list) {
-        super(new LiteralText(""));
+        super(Text.literal(""));
         this.parent = parent;
         this.list = list;
     }
@@ -50,8 +49,8 @@ public class BlockListAllScreen extends Screen {
     @Override
     public void init() {
         entryListWidget = new ListWidget<>(client, width, height, 50, height - 50, 24);
-        textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, new LiteralText(""));
-        addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.add"), e -> {
+        textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, Text.literal(""));
+        addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, Text.translatable("button.add"), e -> {
             BlockListWidget.Entry selectedOrNull = entryListWidget.getSelectedOrNull();
             if (selectedOrNull != null) {
                 list.add(selectedOrNull.name);
@@ -73,7 +72,7 @@ public class BlockListAllScreen extends Screen {
     public List<BlockListWidget.Entry> get() {
         return Registry.BLOCK.stream().filter(it -> {
             if (!textFieldWidget.getText().equals("")) {
-                return (it.asItem().toString().contains(textFieldWidget.getText()) || new TranslatableText(it.asItem().getTranslationKey()).getString().contains(textFieldWidget.getText()));
+                return (it.asItem().toString().contains(textFieldWidget.getText()) || Text.translatable(it.asItem().getTranslationKey()).getString().contains(textFieldWidget.getText()));
             } else {
                 return true;
             }

@@ -18,7 +18,7 @@ package cn.enaium.onekeyminer.screen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -40,8 +40,8 @@ public class BlockListWidget {
             var itemStack = new ItemStack(Registry.ITEM.get(new Identifier(name)));
             if (!itemStack.isEmpty()) {
                 MinecraftClient.getInstance().getItemRenderer().renderGuiItemIcon(itemStack, x, y);
-                textRenderer.draw(matrices, new TranslatableText(itemStack.getTranslationKey()).getString(),
-                        x + entryWidth - textRenderer.getWidth(new TranslatableText(itemStack.getTranslationKey()).getString()),
+                textRenderer.draw(matrices, Text.translatable(itemStack.getTranslationKey()).getString(),
+                        x + entryWidth - textRenderer.getWidth(Text.translatable(itemStack.getTranslationKey()).getString()),
                         y + textRenderer.fontHeight, 0xFFFFFFFF);
             }
             textRenderer.draw(matrices, name, x + entryWidth - textRenderer.getWidth(name), y, 0xFFFFFFFF);

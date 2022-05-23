@@ -21,8 +21,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class BlockListScreen extends Screen {
     private final List<String> list;
 
     public BlockListScreen(List<String> list) {
-        super(new LiteralText(""));
+        super(Text.literal(""));
         this.list = list;
     }
 
@@ -47,10 +46,10 @@ public class BlockListScreen extends Screen {
 
         list.forEach(it -> entryListWidget.addEntry(new BlockListWidget.Entry(it)));
 
-        ButtonWidget addButton = new ButtonWidget(width / 2 - 100, 15, 200, 20, new TranslatableText("button.add"), e -> {
+        ButtonWidget addButton = new ButtonWidget(width / 2 - 100, 15, 200, 20, Text.translatable("button.add"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListAllScreen(this, list));
         });
-        removeButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.remove"), e -> {
+        removeButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, Text.translatable("button.remove"), e -> {
             if (entryListWidget.getSelectedOrNull() != null) {
                 list.remove(entryListWidget.getSelectedOrNull().name);
                 OneKeyMiner.save();

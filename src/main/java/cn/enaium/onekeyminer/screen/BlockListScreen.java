@@ -66,6 +66,8 @@ public class BlockListScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
+        entryListWidget.render(matrices, mouseX, mouseY, delta);
+
         removeButton.active = entryListWidget.getSelected() != null;
         super.render(matrices, mouseX, mouseY, delta);
     }

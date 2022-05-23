@@ -84,6 +84,7 @@ public class BlockListAllScreen extends Screen {
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         addButton.active = entryListWidget.getSelected() != null;
+        entryListWidget.render(matrices, mouseX, mouseY, delta);
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

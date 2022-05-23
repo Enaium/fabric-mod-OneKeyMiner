@@ -26,22 +26,18 @@ public class ToolSelectScreen extends Screen {
 
         addButton(new ButtonWidget(0, 30, 200, 20, new TranslatableText("hoe"), e -> {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.hoe));
-
         }));
 
         addButton(new ButtonWidget(0, 60, 200, 20, new TranslatableText("pickaxe"), e -> {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.pickaxe));
-
         }));
 
         addButton(new ButtonWidget(0, 90, 200, 20, new TranslatableText("shovel"), e -> {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shovel));
-
         }));
 
         addButton(new ButtonWidget(0, 120, 200, 20, new TranslatableText("shears"), e -> {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shears));
-
         }));
 
         super.render(matrices, mouseX, mouseY, delta);

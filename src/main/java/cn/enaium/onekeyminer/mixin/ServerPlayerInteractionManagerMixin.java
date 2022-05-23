@@ -16,7 +16,9 @@
 package cn.enaium.onekeyminer.mixin;
 
 import cn.enaium.onekeyminer.OneKeyMiner;
+import cn.enaium.onekeyminer.model.Config;
 import cn.enaium.onekeyminer.util.BlockUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.*;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
@@ -41,11 +43,11 @@ public abstract class ServerPlayerInteractionManagerMixin {
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
     private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
 
-        var stack = MinecraftClient.getInstance().player.getInventory().getStack(MinecraftClient.getInstance().player.getInventory().selectedSlot);
+        ItemStack stack = MinecraftClient.getInstance().player.inventory.getStack(MinecraftClient.getInstance().player.inventory.selectedSlot);
         if (stack != null) {
-            var canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
+            boolean canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
             if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && MinecraftClient.getInstance().player.isSneaking()) {
-                var config = OneKeyMiner.config;
+                Config config = OneKeyMiner.config;
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {
                     list.addAll(config.axe);
@@ -71,9 +73,9 @@ public abstract class ServerPlayerInteractionManagerMixin {
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
-                    var newBlockPos = new BlockPos(blockPos.getX() + x, blockPos.getY() + y, blockPos.getZ() + z);
-                    var blockState = BlockUtil.getBlockState(newBlockPos);
-                    var name = BlockUtil.getName(blockState.getBlock().getLootTableId());
+                    BlockPos newBlockPos = new BlockPos(blockPos.getX() + x, blockPos.getY() + y, blockPos.getZ() + z);
+                    BlockState blockState = BlockUtil.getBlockState(newBlockPos);
+                    String name = BlockUtil.getName(blockState.getBlock().getLootTableId());
 
                     if (blocks.contains(name) && !searched.contains(newBlockPos) && searched.size() < limit) {
                         searched.add(newBlockPos);

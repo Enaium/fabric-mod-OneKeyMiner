@@ -16,7 +16,6 @@
 package cn.enaium.onekeyminer.screen;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.EntryListWidget;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -43,11 +42,6 @@ public class ListWidget<T extends ListWidget.Entry<T>> extends EntryListWidget<T
     @Override
     protected boolean removeEntry(T entry) {
         return super.removeEntry(entry);
-    }
-
-    @Override
-    public void appendNarrations(NarrationMessageBuilder builder) {
-
     }
 
     @Override

@@ -15,6 +15,7 @@
  */
 package cn.enaium.onekeyminer.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
  */
 public class Config {
     public int limit = 300;
-    public List<String> axe = List.of(
+    public List<String> axe = Arrays.asList(
             "minecraft:warped_stem",
             "minecraft:crimson_stem",
             "minecraft:oak_log",
@@ -40,7 +41,7 @@ public class Config {
             "minecraft:azalea_leaves",
             "minecraft:flowering_azalea_leaves"
     );
-    public List<String> hoe = List.of(
+    public List<String> hoe = Arrays.asList(
             "minecraft:oak_leaves",
             "minecraft:spruce_leaves",
             "minecraft:birch_leaves",
@@ -60,7 +61,7 @@ public class Config {
             "minecraft:moss_carpet",
             "minecraft:moss_block"
     );
-    public List<String> pickaxe = List.of(
+    public List<String> pickaxe = Arrays.asList(
             "minecraft:gold_ore",
             "minecraft:deepslate_gold_ore",
             "minecraft:iron_ore",
@@ -80,7 +81,7 @@ public class Config {
             "minecraft:copper_ore",
             "minecraft:deepslate_copper_ore"
     );
-    public List<String> shovel = List.of(
+    public List<String> shovel = Arrays.asList(
             "minecraft:sand",
             "minecraft:red_sand",
             "minecraft:snow",
@@ -88,7 +89,7 @@ public class Config {
             "minecraft:clay",
             "minecraft:soul_sand"
     );
-    public List<String> shears = List.of(
+    public List<String> shears = Arrays.asList(
             "minecraft:oak_leaves",
             "minecraft:spruce_leaves",
             "minecraft:birch_leaves",

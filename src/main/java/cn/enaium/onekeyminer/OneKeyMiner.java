@@ -25,23 +25,20 @@ import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.command.CommandManager;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class OneKeyMiner implements ModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("OneKeyMiner");
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Hello OneKeyMiner world!");
+        System.out.println("Hello OneKeyMiner world!");
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(CommandManager.literal("onekeyminer").executes(context -> {
-                MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
+                MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().openScreen(new ToolSelectScreen()));
                 return Command.SINGLE_SUCCESS;
             }));
         });
@@ -58,7 +55,7 @@ public class OneKeyMiner implements ModInitializer {
             try {
                 config = new Gson().fromJson(FileUtils.readFileToString(configFile, StandardCharsets.UTF_8), Config.class);
             } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
+                e.printStackTrace();
             }
         } else {
             save();
@@ -69,7 +66,7 @@ public class OneKeyMiner implements ModInitializer {
         try {
             FileUtils.write(configFile, new GsonBuilder().setPrettyPrinting().create().toJson(config), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+            e.printStackTrace();
         }
     }
 }

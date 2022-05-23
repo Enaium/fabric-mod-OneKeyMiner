@@ -48,25 +48,25 @@ public class BlockListScreen extends Screen {
         list.forEach(it -> entryListWidget.addEntry(new BlockListWidget.Entry(it)));
 
         ButtonWidget addButton = new ButtonWidget(width / 2 - 100, 15, 200, 20, new TranslatableText("button.add"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListAllScreen(this, list));
+            MinecraftClient.getInstance().openScreen(new BlockListAllScreen(this, list));
         });
         removeButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.remove"), e -> {
-            if (entryListWidget.getSelectedOrNull() != null) {
-                list.remove(entryListWidget.getSelectedOrNull().name);
+            if (entryListWidget.getSelected() != null) {
+                list.remove(entryListWidget.getSelected().name);
                 OneKeyMiner.save();
-                entryListWidget.removeEntry(entryListWidget.getSelectedOrNull());
+                entryListWidget.removeEntry(entryListWidget.getSelected());
             }
         });
-        addDrawableChild(entryListWidget);
-        addDrawableChild(addButton);
-        addDrawableChild(removeButton);
+        addChild(entryListWidget);
+        addButton(addButton);
+        addButton(removeButton);
         super.init();
     }
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
-        removeButton.active = entryListWidget.getSelectedOrNull() != null;
+        removeButton.active = entryListWidget.getSelected() != null;
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

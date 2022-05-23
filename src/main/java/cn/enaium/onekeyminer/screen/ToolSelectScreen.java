@@ -20,27 +20,27 @@ public class ToolSelectScreen extends Screen {
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
 
-        addDrawableChild(new ButtonWidget(0, 0, 200, 20, new TranslatableText("axe"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListScreen(OneKeyMiner.config.axe));
+        addButton(new ButtonWidget(0, 0, 200, 20, new TranslatableText("axe"), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.axe));
         }));
 
-        addDrawableChild(new ButtonWidget(0, 30, 200, 20, new TranslatableText("hoe"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListScreen(OneKeyMiner.config.hoe));
-
-        }));
-
-        addDrawableChild(new ButtonWidget(0, 60, 200, 20, new TranslatableText("pickaxe"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListScreen(OneKeyMiner.config.pickaxe));
+        addButton(new ButtonWidget(0, 30, 200, 20, new TranslatableText("hoe"), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.hoe));
 
         }));
 
-        addDrawableChild(new ButtonWidget(0, 90, 200, 20, new TranslatableText("shovel"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListScreen(OneKeyMiner.config.shovel));
+        addButton(new ButtonWidget(0, 60, 200, 20, new TranslatableText("pickaxe"), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.pickaxe));
 
         }));
 
-        addDrawableChild(new ButtonWidget(0, 120, 200, 20, new TranslatableText("shears"), e -> {
-            MinecraftClient.getInstance().setScreen(new BlockListScreen(OneKeyMiner.config.shears));
+        addButton(new ButtonWidget(0, 90, 200, 20, new TranslatableText("shovel"), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shovel));
+
+        }));
+
+        addButton(new ButtonWidget(0, 120, 200, 20, new TranslatableText("shears"), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shears));
 
         }));
 

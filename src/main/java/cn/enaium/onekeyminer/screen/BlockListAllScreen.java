@@ -52,11 +52,11 @@ public class BlockListAllScreen extends Screen {
         entryListWidget = new ListWidget<>(client, width, height, 50, height - 50, 24);
         textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, new LiteralText(""));
         addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.add"), e -> {
-            BlockListWidget.Entry selectedOrNull = entryListWidget.getSelectedOrNull();
+            BlockListWidget.Entry selectedOrNull = entryListWidget.getSelected();
             if (selectedOrNull != null) {
                 list.add(selectedOrNull.name);
                 OneKeyMiner.save();
-                MinecraftClient.getInstance().setScreen(parent);
+                MinecraftClient.getInstance().openScreen(parent);
             }
         });
         get().forEach(entryListWidget::addEntry);
@@ -64,9 +64,9 @@ public class BlockListAllScreen extends Screen {
             entryListWidget.replaceEntries(get());
             entryListWidget.setSelected(null);
         });
-        addDrawableChild(entryListWidget);
-        addDrawableChild(textFieldWidget);
-        addDrawableChild(addButton);
+        addChild(entryListWidget);
+        addChild(textFieldWidget);
+        addButton(addButton);
         super.init();
     }
 
@@ -83,7 +83,7 @@ public class BlockListAllScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
-        addButton.active = entryListWidget.getSelectedOrNull() != null;
+        addButton.active = entryListWidget.getSelected() != null;
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

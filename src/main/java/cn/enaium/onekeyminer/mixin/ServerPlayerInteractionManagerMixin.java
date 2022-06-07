@@ -22,6 +22,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.*;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,15 +39,16 @@ public abstract class ServerPlayerInteractionManagerMixin {
     @Shadow
     public abstract boolean tryBreakBlock(BlockPos pos);
 
+    @Shadow public ServerPlayerEntity player;
     private final List<BlockPos> searched = new ArrayList<>();
 
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
     private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
 
-        ItemStack stack = MinecraftClient.getInstance().player.inventory.getInvStack(MinecraftClient.getInstance().player.inventory.selectedSlot);
+        ItemStack stack = player.inventory.getInvStack(player.inventory.selectedSlot);
         if (stack != null) {
-            boolean canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
-            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && MinecraftClient.getInstance().player.isSneaking()) {
+            boolean canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, player);
+            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
                 Config config = OneKeyMiner.config;
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {

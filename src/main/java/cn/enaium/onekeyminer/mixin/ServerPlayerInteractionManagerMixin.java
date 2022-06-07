@@ -19,9 +19,10 @@ import cn.enaium.onekeyminer.OneKeyMiner;
 import cn.enaium.onekeyminer.util.BlockUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.*;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.util.math.BlockPos;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,15 +37,16 @@ public abstract class ServerPlayerInteractionManagerMixin {
     @Shadow
     public abstract boolean tryBreakBlock(BlockPos pos);
 
+    @Shadow @Final protected ServerPlayerEntity player;
     private final List<BlockPos> searched = new ArrayList<>();
 
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
     private void finishMining(BlockPos pos, int sequence, String reason, CallbackInfo ci) {
 
-        var stack = MinecraftClient.getInstance().player.getInventory().getStack(MinecraftClient.getInstance().player.getInventory().selectedSlot);
+        var stack = player.getInventory().getStack(player.getInventory().selectedSlot);
         if (stack != null) {
-            var canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, MinecraftClient.getInstance().player);
-            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && MinecraftClient.getInstance().player.isSneaking()) {
+            var canMine = stack.getItem().canMine(BlockUtil.getBlockState(pos), MinecraftClient.getInstance().world, pos, player);
+            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
                 var config = OneKeyMiner.config;
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {

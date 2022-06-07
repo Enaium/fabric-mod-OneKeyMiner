@@ -41,7 +41,10 @@ public class OneKeyMiner implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(CommandManager.literal("onekeyminer").executes(context -> {
-                MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
+                if (context.getSource().getPlayer().getUuid().equals(MinecraftClient.getInstance().player.getUuid())) {
+                    MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
+                    return Command.SINGLE_SUCCESS;
+                }
                 return Command.SINGLE_SUCCESS;
             }));
         });

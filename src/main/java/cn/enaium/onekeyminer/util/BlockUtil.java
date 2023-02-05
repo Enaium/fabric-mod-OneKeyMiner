@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */package cn.enaium.onekeyminer.util;
+ */
+package cn.enaium.onekeyminer.util;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */package cn.enaium.onekeyminer;
+ */
+package cn.enaium.onekeyminer;
 
 import cn.enaium.onekeyminer.model.Config;
 import cn.enaium.onekeyminer.screen.ToolSelectScreen;

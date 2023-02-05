@@ -22,8 +22,8 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
-import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,12 +33,11 @@ import java.util.stream.Collectors;
  */
 public class BlockListAllScreen extends Screen {
 
+    private final Screen parent;
+    private final List<String> list;
     private ListWidget<BlockListWidget.Entry> entryListWidget;
     private TextFieldWidget textFieldWidget;
     private ButtonWidget addButton;
-
-    private final Screen parent;
-    private final List<String> list;
 
     public BlockListAllScreen(Screen parent, List<String> list) {
         super(Text.literal(""));
@@ -50,14 +49,14 @@ public class BlockListAllScreen extends Screen {
     public void init() {
         entryListWidget = new ListWidget<>(client, width, height, 50, height - 50, 24);
         textFieldWidget = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, Text.literal(""));
-        addButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, Text.translatable("button.add"), e -> {
+        addButton = ButtonWidget.builder(Text.translatable("button.add"), e -> {
             BlockListWidget.Entry selectedOrNull = entryListWidget.getSelectedOrNull();
             if (selectedOrNull != null) {
                 list.add(selectedOrNull.name);
                 OneKeyMiner.save();
                 MinecraftClient.getInstance().setScreen(parent);
             }
-        });
+        }).dimensions(width / 2 - 100, height - 35, 200, 20).build();
         get().forEach(entryListWidget::addEntry);
         textFieldWidget.setChangedListener(s -> {
             entryListWidget.replaceEntries(get());
@@ -70,13 +69,13 @@ public class BlockListAllScreen extends Screen {
     }
 
     public List<BlockListWidget.Entry> get() {
-        return Registry.BLOCK.stream().filter(it -> {
+        return Registries.BLOCK.stream().filter(it -> {
             if (!textFieldWidget.getText().equals("")) {
                 return (it.asItem().toString().contains(textFieldWidget.getText()) || Text.translatable(it.asItem().getTranslationKey()).getString().contains(textFieldWidget.getText()));
             } else {
                 return true;
             }
-        }).map(it -> new BlockListWidget.Entry(Registry.ITEM.getId(it.asItem()).toString())).collect(Collectors.toList());
+        }).map(it -> new BlockListWidget.Entry(Registries.ITEM.getId(it.asItem()).toString())).collect(Collectors.toList());
     }
 
     @Override

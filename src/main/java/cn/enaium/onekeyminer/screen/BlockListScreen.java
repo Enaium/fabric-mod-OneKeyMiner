@@ -30,10 +30,9 @@ import java.util.List;
  */
 public class BlockListScreen extends Screen {
 
+    private final List<String> list;
     private ListWidget<BlockListWidget.Entry> entryListWidget;
     private ButtonWidget removeButton;
-
-    private final List<String> list;
 
     public BlockListScreen(List<String> list) {
         super(Text.literal(""));
@@ -46,16 +45,16 @@ public class BlockListScreen extends Screen {
 
         list.forEach(it -> entryListWidget.addEntry(new BlockListWidget.Entry(it)));
 
-        ButtonWidget addButton = new ButtonWidget(width / 2 - 100, 15, 200, 20, Text.translatable("button.add"), e -> {
+        ButtonWidget addButton = ButtonWidget.builder(Text.translatable("button.add"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListAllScreen(this, list));
-        });
-        removeButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, Text.translatable("button.remove"), e -> {
+        }).dimensions(width / 2 - 100, 15, 200, 20).build();
+        removeButton = ButtonWidget.builder(Text.translatable("button.remove"), e -> {
             if (entryListWidget.getSelectedOrNull() != null) {
                 list.remove(entryListWidget.getSelectedOrNull().name);
                 OneKeyMiner.save();
                 entryListWidget.removeEntry(entryListWidget.getSelectedOrNull());
             }
-        });
+        }).dimensions(width / 2 - 100, height - 35, 200, 20).build();
         addDrawableChild(entryListWidget);
         addDrawableChild(addButton);
         addDrawableChild(removeButton);

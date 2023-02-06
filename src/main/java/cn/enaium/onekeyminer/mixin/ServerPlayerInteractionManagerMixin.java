@@ -82,7 +82,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
                             && !searched.contains(newBlockPos)
                             && searched.size() < (cbrt * cbrt * cbrt)) {
 
-                        if (OneKeyMiner.config.pickaxe.contains(name) && newBlockPos.getManhattanDistance(target) > cbrt) {
+                        if ((OneKeyMiner.config.pickaxe.contains(name) || OneKeyMiner.config.shovel.contains(name)) && newBlockPos.getManhattanDistance(target) > cbrt) {
                             break;
                         }
 

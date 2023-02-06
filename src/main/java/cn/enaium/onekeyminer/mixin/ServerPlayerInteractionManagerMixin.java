@@ -78,7 +78,14 @@ public abstract class ServerPlayerInteractionManagerMixin {
                 for (int z = -radius; z <= radius; z++) {
                     var newBlockPos = new BlockPos(blockPos.getX() + x, blockPos.getY() + y, blockPos.getZ() + z);
                     final var cbrt = Math.ceil(Math.cbrt(limit));
-                    if (name.equals(BlockUtil.getName(world, newBlockPos)) && !searched.contains(newBlockPos) && searched.size() < (cbrt * cbrt * cbrt) && newBlockPos.getManhattanDistance(target) < cbrt) {
+                    if (name.equals(BlockUtil.getName(world, newBlockPos))
+                            && !searched.contains(newBlockPos)
+                            && searched.size() < (cbrt * cbrt * cbrt)) {
+
+                        if (!OneKeyMiner.config.axe.contains(name) && newBlockPos.getManhattanDistance(target) > cbrt) {
+                            break;
+                        }
+
                         searched.add(newBlockPos);
                         tryBreakBlock(newBlockPos);
                         breakBreakBlock(name, target, newBlockPos, limit, searched);

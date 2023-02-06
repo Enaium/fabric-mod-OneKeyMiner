@@ -43,8 +43,8 @@ public abstract class ServerPlayerInteractionManagerMixin {
     @Shadow
     public abstract boolean tryBreakBlock(BlockPos pos);
 
-    @Inject(at = @At(value = "HEAD"), method = "finishMining")
-    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
+    @Inject(at = @At(value = "HEAD"), method = "method_21717")
+    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, CallbackInfo ci) {
         ItemStack stack = player.inventory.getInvStack(player.inventory.selectedSlot);
         if (stack != null) {
             boolean canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
@@ -82,7 +82,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
                             && !searched.contains(newBlockPos)
                             && searched.size() < (cbrt * cbrt * cbrt)) {
 
-                        if (OneKeyMiner.config.pickaxe.contains(name) && newBlockPos.getManhattanDistance(target) > cbrt) {
+                        if ((OneKeyMiner.config.pickaxe.contains(name) || OneKeyMiner.config.shovel.contains(name)) && newBlockPos.getManhattanDistance(target) > cbrt) {
                             break;
                         }
 

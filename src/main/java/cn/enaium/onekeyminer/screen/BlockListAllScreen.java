@@ -84,6 +84,7 @@ public class BlockListAllScreen extends Screen {
         renderBackground();
         addButton.active = entryListWidget.getSelected() != null;
         entryListWidget.render(mouseX, mouseY, delta);
+        textFieldWidget.render(mouseX, mouseY, delta);
         super.render(mouseX, mouseY, delta);
     }
 }

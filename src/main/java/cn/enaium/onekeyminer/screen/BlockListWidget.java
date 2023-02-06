@@ -17,6 +17,7 @@ package cn.enaium.onekeyminer.screen;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -39,7 +40,9 @@ public class BlockListWidget {
             TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
             ItemStack itemStack = new ItemStack(Registry.ITEM.get(new Identifier(name)));
             if (!itemStack.isEmpty()) {
+                DiffuseLighting.enableForItems();
                 MinecraftClient.getInstance().getItemRenderer().renderGuiItemIcon(itemStack, x, y);
+                DiffuseLighting.disable();
                 textRenderer.draw(new TranslatableText(itemStack.getTranslationKey()).getString(),
                         x + entryWidth - textRenderer.getStringWidth(new TranslatableText(itemStack.getTranslationKey()).getString()),
                         y + textRenderer.fontHeight, 0xFFFFFFFF);

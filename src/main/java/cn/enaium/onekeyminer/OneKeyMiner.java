@@ -27,7 +27,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.Identifier;
@@ -43,7 +42,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class OneKeyMiner implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("OneKeyMiner");
-    private static final File configFile = new File(MinecraftClient.getInstance().runDirectory, "OneKeyMiner.json");
+    private static final File configFile = new File(System.getProperty("user.dir"), "OneKeyMiner.json");
     public static Config config = new Config();
 
     public static final LiteralArgumentBuilder<ServerCommandSource> ROOT = literal("onekeyminer").requires(source -> source.hasPermissionLevel(4));

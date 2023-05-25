@@ -39,7 +39,7 @@ public class BlockListWidget {
             var textRenderer = MinecraftClient.getInstance().textRenderer;
             var itemStack = new ItemStack(Registries.ITEM.get(new Identifier(name)));
             if (!itemStack.isEmpty()) {
-                MinecraftClient.getInstance().getItemRenderer().renderGuiItemIcon(itemStack, x, y);
+                MinecraftClient.getInstance().getItemRenderer().renderGuiItemIcon(matrices, itemStack, x, y);
                 textRenderer.draw(matrices, Text.translatable(itemStack.getTranslationKey()).getString(),
                         x + entryWidth - textRenderer.getWidth(Text.translatable(itemStack.getTranslationKey()).getString()),
                         y + textRenderer.fontHeight, 0xFFFFFFFF);

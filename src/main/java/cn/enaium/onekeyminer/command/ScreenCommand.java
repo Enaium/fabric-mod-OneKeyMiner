@@ -15,7 +15,12 @@ import static cn.enaium.onekeyminer.OneKeyMiner.ROOT;
 public class ScreenCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(ROOT.then(CommandManager.literal("screen").executes(context -> {
-            MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
+
+            if (context.getSource().getPlayer() != null && MinecraftClient.getInstance().player != null) {
+                if (context.getSource().getPlayer().getUuid().equals(MinecraftClient.getInstance().player.getUuid())) {
+                    MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
+                }
+            }
             return Command.SINGLE_SUCCESS;
         })));
     }

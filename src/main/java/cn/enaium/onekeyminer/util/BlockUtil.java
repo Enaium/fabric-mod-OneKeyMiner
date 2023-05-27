@@ -29,10 +29,6 @@ public class BlockUtil {
         return identifier.getNamespace() + ":" + identifier.getPath().substring(identifier.getPath().lastIndexOf("/") + 1);
     }
 
-    public static BlockState getBlockState(BlockPos blockPos) {
-        return MinecraftClient.getInstance().world.getBlockState(blockPos);
-    }
-
     public static String getName(World world, BlockPos blockPos) {
         return getName(world.getBlockState(blockPos).getBlock().getLootTableId());
     }

@@ -18,6 +18,9 @@
   "entrypoints": {
     "main": [
       "cn.enaium.onekeyminer.OneKeyMiner"
+    ],
+    "client": [
+      "cn.enaium.onekeyminer.ClientInitializer"
     ]
   },
   "mixins": [

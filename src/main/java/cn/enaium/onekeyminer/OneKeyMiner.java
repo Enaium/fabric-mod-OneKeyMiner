@@ -15,15 +15,21 @@
  */
 package cn.enaium.onekeyminer;
 
+import cn.enaium.onekeyminer.command.ActionCommand;
+import cn.enaium.onekeyminer.command.ListCommand;
 import cn.enaium.onekeyminer.model.Config;
 import cn.enaium.onekeyminer.screen.ToolSelectScreen;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +37,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class OneKeyMiner implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("OneKeyMiner");
     private static final File configFile = new File(MinecraftClient.getInstance().runDirectory, "OneKeyMiner.json");
     public static Config config = new Config();
+
+    public static final LiteralArgumentBuilder<ServerCommandSource> ROOT = CommandManager.literal("onekeyminer").requires(source -> source.hasPermissionLevel(4));
 
     public static void load() {
         if (configFile.exists()) {
@@ -62,13 +71,8 @@ public class OneKeyMiner implements ModInitializer {
         LOGGER.info("Hello OneKeyMiner world!");
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-            dispatcher.register(CommandManager.literal("onekeyminer").executes(context -> {
-                if (context.getSource().getPlayer().getUuid().equals(MinecraftClient.getInstance().player.getUuid())) {
-                    MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().setScreen(new ToolSelectScreen()));
-                    return Command.SINGLE_SUCCESS;
-                }
-                return Command.SINGLE_SUCCESS;
-            }));
+            ListCommand.register(dispatcher);
+            ActionCommand.register(dispatcher);
         });
 
         load();

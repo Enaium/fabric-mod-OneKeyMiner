@@ -4,9 +4,9 @@
   "package": "cn.enaium.onekeyminer.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "ServerPlayerInteractionManagerMixin"
   ],
   "client": [
-    "ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,7 +1,7 @@
 package cn.enaium.onekeyminer.command;
 
-import cn.enaium.onekeyminer.OneKeyMiner;
-import cn.enaium.onekeyminer.model.Tool;
+import cn.enaium.onekeyminer.Config;
+import cn.enaium.onekeyminer.enums.Tool;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.registry.Registries;
@@ -24,11 +24,11 @@ public class ListCommand {
         for (Tool tool : Tool.values()) {
             dispatcher.register(ROOT.then(literal(tool.name()).then(literal("list").executes(context -> {
                 final List<String> list = switch (tool) {
-                    case AXE -> OneKeyMiner.config.axe;
-                    case HOE -> OneKeyMiner.config.hoe;
-                    case PICKAXE -> OneKeyMiner.config.pickaxe;
-                    case SHOVEL -> OneKeyMiner.config.shovel;
-                    case SHEARS -> OneKeyMiner.config.shears;
+                    case AXE -> Config.getModel().axe;
+                    case HOE -> Config.getModel().hoe;
+                    case PICKAXE -> Config.getModel().pickaxe;
+                    case SHOVEL -> Config.getModel().shovel;
+                    case SHEARS -> Config.getModel().shears;
                 };
                 MutableText previous = null;
                 for (int i = 0; i < list.size(); i++) {

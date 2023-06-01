@@ -16,62 +16,29 @@
 package cn.enaium.onekeyminer;
 
 import cn.enaium.onekeyminer.command.ActionCommand;
+import cn.enaium.onekeyminer.command.LimitCommand;
 import cn.enaium.onekeyminer.command.ListCommand;
-import cn.enaium.onekeyminer.model.Config;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Objects;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public class OneKeyMiner implements ModInitializer {
-
-    public static final LiteralArgumentBuilder<ServerCommandSource> ROOT = CommandManager.literal("onekeyminer").requires(source -> source.hasPermissionLevel(4));
+    public static final LiteralArgumentBuilder<ServerCommandSource> ROOT = literal("onekeyminer").requires(source -> source.hasPermissionLevel(4));
 
     @Override
     public void onInitialize() {
         System.out.println("Hello OneKeyMiner world!");
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, environment) -> {
             ListCommand.register(dispatcher);
+            LimitCommand.register(dispatcher);
             ActionCommand.register(dispatcher);
         });
-        
-        load();
-        Runtime.getRuntime().addShutdownHook(new Thread(OneKeyMiner::save));
-    }
 
-    private static final File configFile = new File(MinecraftClient.getInstance().runDirectory, "OneKeyMiner.json");
-    public static Config config = new Config();
-
-    public static void load() {
-        if (configFile.exists()) {
-            try {
-                config = new Gson().fromJson(FileUtils.readFileToString(configFile, StandardCharsets.UTF_8), Config.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            save();
-        }
-    }
-
-    public static void save() {
-        try {
-            FileUtils.write(configFile, new GsonBuilder().setPrettyPrinting().create().toJson(config), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Config.load();
+        Runtime.getRuntime().addShutdownHook(new Thread(Config::save));
     }
 }

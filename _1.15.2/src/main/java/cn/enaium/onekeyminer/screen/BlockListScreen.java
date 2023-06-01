@@ -16,6 +16,7 @@
 
 package cn.enaium.onekeyminer.screen;
 
+import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.OneKeyMiner;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -52,7 +53,7 @@ public class BlockListScreen extends Screen {
         removeButton = new ButtonWidget(width / 2 - 100, height - 35, 200, 20, new TranslatableText("button.remove").asString(), e -> {
             if (entryListWidget.getSelected() != null) {
                 list.remove(entryListWidget.getSelected().name);
-                OneKeyMiner.save();
+                Config.save();
                 entryListWidget.removeEntry(entryListWidget.getSelected());
             }
         });

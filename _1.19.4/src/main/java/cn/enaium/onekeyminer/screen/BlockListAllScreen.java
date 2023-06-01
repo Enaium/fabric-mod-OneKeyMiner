@@ -16,7 +16,7 @@
 
 package cn.enaium.onekeyminer.screen;
 
-import cn.enaium.onekeyminer.OneKeyMiner;
+import cn.enaium.onekeyminer.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -53,7 +53,7 @@ public class BlockListAllScreen extends Screen {
             BlockListWidget.Entry selectedOrNull = entryListWidget.getSelectedOrNull();
             if (selectedOrNull != null) {
                 list.add(selectedOrNull.name);
-                OneKeyMiner.save();
+                Config.save();
                 MinecraftClient.getInstance().setScreen(parent);
             }
         }).dimensions(width / 2 - 100, height - 35, 200, 20).build();

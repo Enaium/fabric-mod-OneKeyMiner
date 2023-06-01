@@ -1,14 +1,18 @@
 package cn.enaium.onekeyminer.command;
 
-import cn.enaium.onekeyminer.OneKeyMiner;
-import cn.enaium.onekeyminer.model.Action;
-import cn.enaium.onekeyminer.model.Tool;
+import cn.enaium.onekeyminer.Config;
+import cn.enaium.onekeyminer.enums.Action;
+import cn.enaium.onekeyminer.enums.Tool;
 import cn.enaium.onekeyminer.util.BlockUtil;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.arguments.BlockStateArgument;
 import net.minecraft.command.arguments.BlockStateArgumentType;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.HoverEvent;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 
 import static cn.enaium.onekeyminer.OneKeyMiner.ROOT;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -30,33 +34,35 @@ public class ActionCommand {
                                 case ADD:
                                     switch (tool) {
                                         case AXE:
-                                            OneKeyMiner.config.axe.add(blockName);
+                                            Config.getModel().axe.add(blockName);
                                         case HOE:
-                                            OneKeyMiner.config.hoe.add(blockName);
+                                            Config.getModel().hoe.add(blockName);
                                         case PICKAXE:
-                                            OneKeyMiner.config.pickaxe.add(blockName);
+                                            Config.getModel().pickaxe.add(blockName);
                                         case SHOVEL:
-                                            OneKeyMiner.config.shovel.add(blockName);
+                                            Config.getModel().shovel.add(blockName);
                                         case SHEARS:
-                                            OneKeyMiner.config.shears.add(blockName);
+                                            Config.getModel().shears.add(blockName);
                                     }
+                                    context.getSource().sendFeedback(new TranslatableText("command.action.add.success", new LiteralText(blockName).styled(style -> style.setColor(Formatting.AQUA).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText(block.getBlockState().getBlock().getTranslationKey()))))), false);
                                     break;
                                 case REMOVE:
                                     switch (tool) {
                                         case AXE:
-                                            OneKeyMiner.config.axe.removeIf(s -> s.equals(blockName));
+                                            Config.getModel().axe.removeIf(s -> s.equals(blockName));
                                         case HOE:
-                                            OneKeyMiner.config.hoe.removeIf(s -> s.equals(blockName));
+                                            Config.getModel().hoe.removeIf(s -> s.equals(blockName));
                                         case PICKAXE:
-                                            OneKeyMiner.config.pickaxe.removeIf(s -> s.equals(blockName));
+                                            Config.getModel().pickaxe.removeIf(s -> s.equals(blockName));
                                         case SHOVEL:
-                                            OneKeyMiner.config.shovel.removeIf(s -> s.equals(blockName));
+                                            Config.getModel().shovel.removeIf(s -> s.equals(blockName));
                                         case SHEARS:
-                                            OneKeyMiner.config.shears.removeIf(s -> s.equals(blockName));
+                                            Config.getModel().shears.removeIf(s -> s.equals(blockName));
                                     }
+                                    context.getSource().sendFeedback(new TranslatableText("command.action.remove.success", new LiteralText(blockName).styled(style -> style.setColor(Formatting.AQUA).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText(block.getBlockState().getBlock().getTranslationKey()))))), false);
                                     break;
                             }
-                            OneKeyMiner.save();
+                            Config.save();
                             return Command.SINGLE_SUCCESS;
                         }))))
                 );

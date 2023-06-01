@@ -15,6 +15,7 @@
  */
 package cn.enaium.onekeyminer.screen;
 
+import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.OneKeyMiner;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -34,24 +35,24 @@ public class ToolSelectScreen extends Screen {
     public void render(int mouseX, int mouseY, float delta) {
         renderBackground();
 
-        addButton(new ButtonWidget(0, 0, 200, 20, new TranslatableText("axe").asString(), e -> {
-            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.axe));
+        addButton(new ButtonWidget(0, 0, 200, 20, new TranslatableText("button.axe").asString(), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().axe));
         }));
 
-        addButton(new ButtonWidget(0, 30, 200, 20, new TranslatableText("hoe").asString(), e -> {
-            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.hoe));
+        addButton(new ButtonWidget(0, 30, 200, 20, new TranslatableText("button.hoe").asString(), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().hoe));
         }));
 
-        addButton(new ButtonWidget(0, 60, 200, 20, new TranslatableText("pickaxe").asString(), e -> {
-            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.pickaxe));
+        addButton(new ButtonWidget(0, 60, 200, 20, new TranslatableText("button.pickaxe").asString(), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().pickaxe));
         }));
 
-        addButton(new ButtonWidget(0, 90, 200, 20, new TranslatableText("shovel").asString(), e -> {
-            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shovel));
+        addButton(new ButtonWidget(0, 90, 200, 20, new TranslatableText("button.shovel").asString(), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().shovel));
         }));
 
-        addButton(new ButtonWidget(0, 120, 200, 20, new TranslatableText("shears").asString(), e -> {
-            MinecraftClient.getInstance().openScreen(new BlockListScreen(OneKeyMiner.config.shears));
+        addButton(new ButtonWidget(0, 120, 200, 20, new TranslatableText("button.shears").asString(), e -> {
+            MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().shears));
         }));
 
         super.render(mouseX, mouseY, delta);

@@ -15,6 +15,8 @@
  */
 package cn.enaium.onekeyminer.util;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,7 +1,8 @@
 package cn.enaium.onekeyminer.command;
 
+import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.OneKeyMiner;
-import cn.enaium.onekeyminer.model.Tool;
+import cn.enaium.onekeyminer.enums.Tool;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.command.ServerCommandSource;
@@ -29,19 +30,19 @@ public class ListCommand {
 
                 switch (tool) {
                     case AXE:
-                        list = OneKeyMiner.config.axe;
+                        list = Config.getModel().axe;
                         break;
                     case HOE:
-                        list = OneKeyMiner.config.hoe;
+                        list = Config.getModel().hoe;
                         break;
                     case PICKAXE:
-                        list = OneKeyMiner.config.pickaxe;
+                        list = Config.getModel().pickaxe;
                         break;
                     case SHOVEL:
-                        list = OneKeyMiner.config.shovel;
+                        list = Config.getModel().shovel;
                         break;
                     case SHEARS:
-                        list = OneKeyMiner.config.shears;
+                        list = Config.getModel().shears;
                         break;
                 }
 

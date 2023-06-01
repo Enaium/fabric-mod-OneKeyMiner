@@ -6,8 +6,6 @@
   "mixins": [
     "ServerPlayerInteractionManagerMixin"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }

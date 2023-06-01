@@ -15,8 +15,7 @@
  */
 package cn.enaium.onekeyminer.mixin;
 
-import cn.enaium.onekeyminer.OneKeyMiner;
-import cn.enaium.onekeyminer.model.Config;
+import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.util.BlockUtil;
 import net.minecraft.item.*;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
@@ -49,7 +48,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
         if (stack != null) {
             boolean canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
             if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
-                Config config = OneKeyMiner.config;
+                Config.Model config = Config.getModel();
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {
                     list.addAll(config.axe);
@@ -82,7 +81,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
                             && !searched.contains(newBlockPos)
                             && searched.size() < (cbrt * cbrt * cbrt)) {
 
-                        if ((OneKeyMiner.config.pickaxe.contains(name) || OneKeyMiner.config.shovel.contains(name)) && newBlockPos.getManhattanDistance(target) > cbrt) {
+                        if ((Config.getModel().pickaxe.contains(name) || Config.getModel().shovel.contains(name)) && newBlockPos.getManhattanDistance(target) > cbrt) {
                             break;
                         }
 

@@ -1,0 +1,14 @@
+{
+  "button.add": "Ajouter",
+  "button.remove": "Supprimer",
+  "button.axe": "Hache",
+  "button.hoe": "Houe",
+  "button.pickaxe": "Pioche",
+  "button.shovel": "Pelle",
+  "button.shears": "Ciseaux",
+  "command.limit.error": "La limite doit être supérieure à 0",
+  "command.limit.success": "Limite définie sur %d",
+  "command.limit.get": "Limite actuelle: %d",
+  "command.action.add.success": "Ajouter %s",
+  "command.action.remove.success": "Supprimer %s"
+}

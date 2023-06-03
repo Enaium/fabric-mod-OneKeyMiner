@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.enaium.onekeyminer.events;
+package cn.enaium.onekeyminer.callback.impl;
 
 import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.callback.FinishMiningCallback;
@@ -33,7 +33,7 @@ import java.util.function.Function;
 /**
  * @author Enaium
  */
-public class FinisMingEvent implements FinishMiningCallback {
+public class FinishMiningCallbackImpl implements FinishMiningCallback {
     /**
      * Finds blocks in a server world within a certain radius limit, relative to a center position.
      *
@@ -128,9 +128,9 @@ public class FinisMingEvent implements FinishMiningCallback {
     public ActionResult interact(ServerWorld world, ServerPlayerEntity player, BlockPos pos, Function<BlockPos, Void> tryBreak) {
         ItemStack stack = player.inventory.getStack(player.inventory.selectedSlot);
         if (stack != null) {
-            var canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
+            boolean canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
             if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
-                var config = Config.getModel();
+                Config.Model config = Config.getModel();
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {
                     list.addAll(config.axe);
@@ -143,7 +143,7 @@ public class FinisMingEvent implements FinishMiningCallback {
                 } else if (stack.getItem() instanceof ShearsItem) {
                     list.addAll(config.shears);
                 }
-                final var name = BlockUtil.getName(world, pos);
+                final String name = BlockUtil.getName(world, pos);
                 if (list.contains(name)) {
                     findBlocks(world, pos, config.limit).forEach(tryBreak::apply);
                 }

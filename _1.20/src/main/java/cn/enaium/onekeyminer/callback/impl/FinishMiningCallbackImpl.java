@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cn.enaium.onekeyminer.events;
+package cn.enaium.onekeyminer.callback.impl;
 
 import cn.enaium.onekeyminer.Config;
 import cn.enaium.onekeyminer.callback.FinishMiningCallback;
@@ -33,7 +33,7 @@ import java.util.function.Function;
 /**
  * @author Enaium
  */
-public class FinisMingEvent implements FinishMiningCallback {
+public class FinishMiningCallbackImpl implements FinishMiningCallback {
     /**
      * Finds blocks in a server world within a certain radius limit, relative to a center position.
      *

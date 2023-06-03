@@ -16,9 +16,7 @@
 
 package cn.enaium.onekeyminer;
 
-import cn.enaium.onekeyminer.callback.FinishMiningCallback;
 import cn.enaium.onekeyminer.command.ScreenCommand;
-import cn.enaium.onekeyminer.events.FinisMingEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
@@ -31,6 +29,5 @@ public class ClientInitializer implements ClientModInitializer {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             ScreenCommand.register(dispatcher);
         });
-        FinishMiningCallback.EVENT.register(new FinisMingEvent());
     }
 }

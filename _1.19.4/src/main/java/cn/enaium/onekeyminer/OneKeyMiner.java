@@ -15,9 +15,12 @@
  */
 package cn.enaium.onekeyminer;
 
+import cn.enaium.onekeyminer.callback.FinishMiningCallback;
+import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackImpl;
 import cn.enaium.onekeyminer.command.ActionCommand;
 import cn.enaium.onekeyminer.command.LimitCommand;
 import cn.enaium.onekeyminer.command.ListCommand;
+import cn.enaium.onekeyminer.command.ScreenCommand;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -40,6 +43,8 @@ public class OneKeyMiner implements ModInitializer {
             LimitCommand.register(dispatcher);
             ActionCommand.register(dispatcher, registryAccess);
         });
+
+        FinishMiningCallback.EVENT.register(new FinishMiningCallbackImpl());
 
         Config.load();
         Runtime.getRuntime().addShutdownHook(new Thread(Config::save));

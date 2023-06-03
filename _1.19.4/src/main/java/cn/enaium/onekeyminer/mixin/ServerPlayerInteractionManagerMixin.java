@@ -15,9 +15,7 @@
  */
 package cn.enaium.onekeyminer.mixin;
 
-import cn.enaium.onekeyminer.Config;
-import cn.enaium.onekeyminer.util.BlockUtil;
-import net.minecraft.item.*;
+import cn.enaium.onekeyminer.callback.FinishMiningCallback;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.server.world.ServerWorld;
@@ -28,9 +26,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mixin(ServerPlayerInteractionManager.class)
 public abstract class ServerPlayerInteractionManagerMixin {
@@ -45,53 +40,9 @@ public abstract class ServerPlayerInteractionManagerMixin {
 
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
     private void finishMining(BlockPos pos, int sequence, String reason, CallbackInfo ci) {
-        var stack = player.getInventory().getStack(player.getInventory().selectedSlot);
-        if (stack != null) {
-            var canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
-            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
-                var config = Config.getModel();
-                List<String> list = new ArrayList<>();
-                if (stack.getItem() instanceof AxeItem) {
-                    list.addAll(config.axe);
-                } else if (stack.getItem() instanceof HoeItem) {
-                    list.addAll(config.hoe);
-                } else if (stack.getItem() instanceof PickaxeItem) {
-                    list.addAll(config.pickaxe);
-                } else if (stack.getItem() instanceof ShovelItem) {
-                    list.addAll(config.shovel);
-                } else if (stack.getItem() instanceof ShearsItem) {
-                    list.addAll(config.shears);
-                }
-                final var name = BlockUtil.getName(world, pos);
-                if (list.contains(name)) {
-                    breakBreakBlock(name, pos, pos, config.limit, new ArrayList<>());
-                }
-            }
-        }
-    }
-
-
-    private void breakBreakBlock(String name, BlockPos target, BlockPos blockPos, int limit, List<BlockPos> searched) {
-        int radius = 1;
-        for (int x = -radius; x <= radius; x++) {
-            for (int y = -radius; y <= radius; y++) {
-                for (int z = -radius; z <= radius; z++) {
-                    var newBlockPos = new BlockPos(blockPos.getX() + x, blockPos.getY() + y, blockPos.getZ() + z);
-                    final var cbrt = Math.ceil(Math.cbrt(limit));
-                    if (name.equals(BlockUtil.getName(world, newBlockPos))
-                            && !searched.contains(newBlockPos)
-                            && searched.size() < (cbrt * cbrt * cbrt)) {
-
-                        if ((Config.getModel().pickaxe.contains(name) || Config.getModel().shovel.contains(name)) && newBlockPos.getManhattanDistance(target) > cbrt) {
-                            break;
-                        }
-
-                        searched.add(newBlockPos);
-                        tryBreakBlock(newBlockPos);
-                        breakBreakBlock(name, target, newBlockPos, limit, searched);
-                    }
-                }
-            }
-        }
+        FinishMiningCallback.EVENT.invoker().interact(world, player, pos, (tryBreak) -> {
+            tryBreakBlock(tryBreak);
+            return null;
+        });
     }
 }

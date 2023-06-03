@@ -17,7 +17,6 @@
 package cn.enaium.onekeyminer.screen;
 
 import cn.enaium.onekeyminer.Config;
-import cn.enaium.onekeyminer.OneKeyMiner;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -32,10 +31,9 @@ import java.util.List;
  */
 public class BlockListScreen extends Screen {
 
+    private final List<String> list;
     private ListWidget<BlockListWidget.Entry> entryListWidget;
     private ButtonWidget removeButton;
-
-    private final List<String> list;
 
     public BlockListScreen(List<String> list) {
         super(new LiteralText(""));

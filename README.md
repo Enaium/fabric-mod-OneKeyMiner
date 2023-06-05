@@ -8,7 +8,7 @@ A minecraft mod for Fabric that allows you to mine blocks with one mining action
 
 - `/onekeyminer screen` - Displays the mod's screen.(Only works in singleplayer and on LAN servers and only for the
   player who open the LAN server)
-- `/onekeyminer limit` - Displays the current limit.
+- `/onekeyminer limit` - Displays the current limit.(Default: 300)
 - `/onekeyminer limit <limit>` - Max amount of blocks that can be mined with one action. (Slightly deviates from the
   actual limit so that the actual limit is always greater than or equal to the specified limit; slightly below the limit
   also possible.)

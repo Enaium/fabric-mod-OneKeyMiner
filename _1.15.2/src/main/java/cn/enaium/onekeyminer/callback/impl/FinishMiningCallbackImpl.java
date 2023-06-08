@@ -58,7 +58,8 @@ public class FinishMiningCallbackImpl implements FinishMiningCallback {
         while (!queue.isEmpty() && blockList.size() < limit) {
             // Save the current size of the queue to process all positions added during the previous iteration of the loop
             int queueSize = queue.size();
-            for (int i = 0; i < queueSize; i++) {
+            // Loop through all positions added during the previous iteration of the loop, and stop if the limit on found blocks has been reached
+            for (int i = 0; i < queueSize && blockList.size() < limit; i++) {
                 // Retrieve and remove the first position in the queue
                 BlockPos currentPos = queue.poll();
                 // If the block at the current position matches the center block, add it to the list of found blocks and mark it as visited

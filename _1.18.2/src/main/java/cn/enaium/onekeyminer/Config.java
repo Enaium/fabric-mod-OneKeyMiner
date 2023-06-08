@@ -59,7 +59,7 @@ public class Config {
     }
 
     public static class Model {
-        public int limit = 300;
+        public int limit = 64;
         public List<String> axe = new ArrayList<>(List.of(
                 "minecraft:warped_stem",
                 "minecraft:crimson_stem",

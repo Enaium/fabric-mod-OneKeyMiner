@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class Config {
 
-    private static final File configFile = new File(MinecraftClient.getInstance().runDirectory, "OneKeyMiner.json");
+    private static final File configFile = new File(System.getProperty("user.dir"), "OneKeyMiner.json");
     private static Model model = new Model();
 
     public static Model getModel() {

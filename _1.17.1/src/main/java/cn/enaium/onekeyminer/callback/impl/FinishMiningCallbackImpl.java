@@ -88,38 +88,6 @@ public class FinishMiningCallbackImpl implements FinishMiningCallback {
                     visited.add(currentPos);
                 }
             }
-
-            // Find the maximum distance from the center position to any found block
-            int maxDistance = -1;
-            for (BlockPos pos : blockList) {
-                int distance = centerPos.getManhattanDistance(pos);
-                if (distance > maxDistance) {
-                    maxDistance = distance;
-                }
-            }
-            // Use the maximum distance to set the radius for the next search iteration
-            int searchRadius = maxDistance + 1;
-
-            // If the queue is empty and the limit on found blocks has not been reached, begin a new search iteration around each found block
-            if (queue.isEmpty()) {
-                if (blockList.size() >= limit) {
-                    break;
-                }
-                for (BlockPos pos : blockList) {
-                    for (int xOffset = -searchRadius; xOffset <= searchRadius; xOffset++) {
-                        for (int yOffset = -searchRadius; yOffset <= searchRadius; yOffset++) {
-                            for (int zOffset = -searchRadius; zOffset <= searchRadius; zOffset++) {
-                                BlockPos adjacentPos = pos.add(xOffset, yOffset, zOffset);
-                                if (!visited.contains(adjacentPos)) {
-                                    queue.offer(adjacentPos);
-                                    visited.add(adjacentPos);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
         }
         // Return the set of found blocks
         return blockList;

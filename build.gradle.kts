@@ -55,4 +55,10 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
+    sourceSets.main {
+        resources {
+            srcDir(file(rootProject.projectDir).resolve("resources"))
+        }
+    }
 }

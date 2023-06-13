@@ -10,5 +10,5 @@ A minecraft mod for Fabric that allows you to mine blocks with one mining action
   player who open the LAN server)
 - `/onekeyminer limit` - Displays the current limit.(Default: 64)
 - `/onekeyminer limit <limit>` - Max amount of blocks that can be mined with one action.(Don't set it too high)
-- `/onekeyminer <AXE|HOE|PICKAXE|SHOVEL|SHEARS> list` - Lists all blocks that are currently in the tool's list.
-- `/onekeyminer <AXE|HOE|PICKAXE|SHOVEL|SHEARS> <ADD|REMOVE> <block>` - Adds or removes a block from the tool's list.
+- `/onekeyminer <AXE|HOE|PICKAXE|SHOVEL|SHEARS|ANY> list` - Lists all blocks that are currently in the tool's list.
+- `/onekeyminer <AXE|HOE|PICKAXE|SHOVEL|SHEARS|ANY> <ADD|REMOVE> <block>` - Adds or removes a block from the tool's list.

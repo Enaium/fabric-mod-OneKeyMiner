@@ -42,22 +42,22 @@ public class ToolSelectScreen extends Screen {
 
         addDrawableChild(new ButtonWidget(0, 30, 200, 20, new TranslatableText("button.hoe"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().hoe));
-
         }));
 
         addDrawableChild(new ButtonWidget(0, 60, 200, 20, new TranslatableText("button.pickaxe"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().pickaxe));
-
         }));
 
         addDrawableChild(new ButtonWidget(0, 90, 200, 20, new TranslatableText("button.shovel"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().shovel));
-
         }));
 
         addDrawableChild(new ButtonWidget(0, 120, 200, 20, new TranslatableText("button.shears"), e -> {
             MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().shears));
+        }));
 
+        addDrawableChild(new ButtonWidget(0, 120, 200, 20, new TranslatableText("button.any"), e -> {
+            MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().any));
         }));
 
         super.render(matrices, mouseX, mouseY, delta);

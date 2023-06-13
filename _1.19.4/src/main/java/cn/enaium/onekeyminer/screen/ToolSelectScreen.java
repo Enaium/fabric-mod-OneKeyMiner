@@ -54,6 +54,10 @@ public class ToolSelectScreen extends Screen {
             MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().shears));
         }).dimensions(0, 120, 200, 20).build());
 
+        addDrawableChild(ButtonWidget.builder(Text.translatable("button.any"), e -> {
+            MinecraftClient.getInstance().setScreen(new BlockListScreen(Config.getModel().any));
+        }).dimensions(0, 120, 200, 20).build());
+
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

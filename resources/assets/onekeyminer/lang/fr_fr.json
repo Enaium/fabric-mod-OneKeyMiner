@@ -6,6 +6,7 @@
   "button.pickaxe": "Pioche",
   "button.shovel": "Pelle",
   "button.shears": "Ciseaux",
+  "button.any": "N'importe quel outil",
   "command.limit.error": "La limite doit être supérieure à 0",
   "command.limit.success": "Limite définie sur %d",
   "command.limit.get": "Limite actuelle: %d",

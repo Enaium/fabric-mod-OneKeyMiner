@@ -6,6 +6,7 @@
   "button.pickaxe": "Pickaxe",
   "button.shovel": "Shovel",
   "button.shears": "Shears",
+  "button.any": "Any",
   "command.limit.error": "Limit must greater than 0",
   "command.limit.success": "Set limit to %d",
   "command.limit.get": "Limit is %d",

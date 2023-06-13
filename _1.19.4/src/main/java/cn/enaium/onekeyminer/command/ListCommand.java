@@ -45,6 +45,7 @@ public class ListCommand {
                     case PICKAXE -> Config.getModel().pickaxe;
                     case SHOVEL -> Config.getModel().shovel;
                     case SHEARS -> Config.getModel().shears;
+                    case ANY -> Config.getModel().any;
                 };
                 MutableText previous = null;
                 for (int i = 0; i < list.size(); i++) {

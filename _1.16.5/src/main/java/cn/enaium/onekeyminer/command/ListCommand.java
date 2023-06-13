@@ -58,6 +58,9 @@ public class ListCommand {
                     case SHEARS:
                         list = Config.getModel().shears;
                         break;
+                    case ANY:
+                        list = Config.getModel().any;
+                        break;
                 }
 
                 MutableText previous = null;

@@ -6,6 +6,7 @@
   "button.pickaxe": "镐",
   "button.shovel": "锹",
   "button.shears": "剪刀",
+  "button.any": "任意",
   "command.limit.error": "限制必须大于0",
   "command.limit.success": "设置限制为%d",
   "command.limit.get": "限制为%d",

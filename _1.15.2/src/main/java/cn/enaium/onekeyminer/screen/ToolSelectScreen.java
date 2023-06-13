@@ -50,7 +50,7 @@ public class ToolSelectScreen extends Screen {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().shovel));
         }));
 
-        addButton(new ButtonWidget(0, 150, 200, 20, new TranslatableText("button.shears").asString(), e -> {
+        addButton(new ButtonWidget(0, 120, 200, 20, new TranslatableText("button.shears").asString(), e -> {
             MinecraftClient.getInstance().openScreen(new BlockListScreen(Config.getModel().shears));
         }));
 

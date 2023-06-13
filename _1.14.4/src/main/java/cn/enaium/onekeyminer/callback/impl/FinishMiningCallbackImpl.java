@@ -111,6 +111,8 @@ public class FinishMiningCallbackImpl implements FinishMiningCallback {
                     list.addAll(config.shovel);
                 } else if (stack.getItem() instanceof ShearsItem) {
                     list.addAll(config.shears);
+                } else if (stack.getItem() instanceof MiningToolItem) {
+                    list.addAll(config.any);
                 }
                 final String name = BlockUtil.getName(world, pos);
                 if (list.contains(name)) {

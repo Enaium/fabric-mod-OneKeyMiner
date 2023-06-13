@@ -119,5 +119,7 @@ public class Config {
                 "minecraft:acacia_leaves",
                 "minecraft:dark_oak_leaves"
         ));
+
+        public List<String> any = new ArrayList<>();
     }
 }

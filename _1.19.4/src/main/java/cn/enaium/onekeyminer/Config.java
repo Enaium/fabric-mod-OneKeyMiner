@@ -136,5 +136,7 @@ public class Config {
                 "minecraft:azalea_leaves",
                 "minecraft:flowering_azalea_leaves"
         ));
+
+        public List<String> any = new ArrayList<>();
     }
 }

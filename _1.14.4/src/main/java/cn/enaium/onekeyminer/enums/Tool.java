@@ -24,5 +24,6 @@ public enum Tool {
     HOE,
     PICKAXE,
     SHOVEL,
-    SHEARS
+    SHEARS,
+    ANY
 }

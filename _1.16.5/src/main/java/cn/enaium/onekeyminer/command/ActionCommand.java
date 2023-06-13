@@ -53,14 +53,22 @@ public class ActionCommand {
                                     switch (tool) {
                                         case AXE:
                                             Config.getModel().axe.add(blockName);
+                                            break;
                                         case HOE:
                                             Config.getModel().hoe.add(blockName);
+                                            break;
                                         case PICKAXE:
                                             Config.getModel().pickaxe.add(blockName);
+                                            break;
                                         case SHOVEL:
                                             Config.getModel().shovel.add(blockName);
+                                            break;
                                         case SHEARS:
                                             Config.getModel().shears.add(blockName);
+                                            break;
+                                        case ANY:
+                                            Config.getModel().any.add(blockName);
+                                            break;
                                     }
                                     context.getSource().sendFeedback(new TranslatableText("command.action.add.success", new LiteralText(blockName).styled(style -> style.withColor(Formatting.AQUA).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemStackContent(itemStack))))), false);
                                     break;
@@ -68,14 +76,22 @@ public class ActionCommand {
                                     switch (tool) {
                                         case AXE:
                                             Config.getModel().axe.removeIf(s -> s.equals(blockName));
+                                            break;
                                         case HOE:
                                             Config.getModel().hoe.removeIf(s -> s.equals(blockName));
+                                            break;
                                         case PICKAXE:
                                             Config.getModel().pickaxe.removeIf(s -> s.equals(blockName));
+                                            break;
                                         case SHOVEL:
                                             Config.getModel().shovel.removeIf(s -> s.equals(blockName));
+                                            break;
                                         case SHEARS:
                                             Config.getModel().shears.removeIf(s -> s.equals(blockName));
+                                            break;
+                                        case ANY:
+                                            Config.getModel().any.removeIf(s -> s.equals(blockName));
+                                            break;
                                     }
                                     context.getSource().sendFeedback(new TranslatableText("command.action.remove.success", new LiteralText(blockName).styled(style -> style.withColor(Formatting.AQUA).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemStackContent(itemStack))))), false);
                                     break;

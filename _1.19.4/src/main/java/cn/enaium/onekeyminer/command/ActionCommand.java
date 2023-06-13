@@ -56,6 +56,7 @@ public class ActionCommand {
                                         case PICKAXE -> Config.getModel().pickaxe.add(blockName);
                                         case SHOVEL -> Config.getModel().shovel.add(blockName);
                                         case SHEARS -> Config.getModel().shears.add(blockName);
+                                        case ANY -> Config.getModel().any.add(blockName);
                                     }
                                     context.getSource().sendFeedback(Text.translatable("command.action.add.success", Text.literal(blockName).styled(style -> style.withColor(Formatting.AQUA).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemStackContent(itemStack))))), false);
                                 }
@@ -66,6 +67,7 @@ public class ActionCommand {
                                         case PICKAXE -> Config.getModel().pickaxe.removeIf(s -> s.equals(blockName));
                                         case SHOVEL -> Config.getModel().shovel.removeIf(s -> s.equals(blockName));
                                         case SHEARS -> Config.getModel().shears.removeIf(s -> s.equals(blockName));
+                                        case ANY -> Config.getModel().any.removeIf(s -> s.equals(blockName));
                                     }
                                     context.getSource().sendFeedback(Text.translatable("command.action.remove.success", Text.literal(blockName).styled(style -> style.withColor(Formatting.AQUA).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemStackContent(itemStack))))), false);
                                 }

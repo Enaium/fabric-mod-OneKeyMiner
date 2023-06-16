@@ -17,6 +17,7 @@
 package cn.enaium.onekeyminer.screen;
 
 import cn.enaium.onekeyminer.Config;
+import cn.enaium.onekeyminer.util.BlockUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -75,7 +76,7 @@ public class BlockListAllScreen extends Screen {
             } else {
                 return true;
             }
-        }).map(it -> new BlockListWidget.Entry(Registries.ITEM.getId(it.asItem()).toString())).collect(Collectors.toList());
+        }).map(it -> new BlockListWidget.Entry(BlockUtil.getName(it.getLootTableId()))).collect(Collectors.toList());
     }
 
     @Override

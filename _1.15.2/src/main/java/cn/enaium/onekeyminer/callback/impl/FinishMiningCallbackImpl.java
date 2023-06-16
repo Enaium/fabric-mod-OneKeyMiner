@@ -98,7 +98,7 @@ public class FinishMiningCallbackImpl implements FinishMiningCallback {
         ItemStack stack = player.inventory.getInvStack(player.inventory.selectedSlot);
         if (stack != null) {
             boolean canMine = stack.getItem().canMine(world.getBlockState(pos), world, pos, player);
-            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
+            if (canMine && (stack.getItem() instanceof MiningToolItem || stack.getItem() instanceof HoeItem || stack.getItem() instanceof ShearsItem) && player.isSneaking()) {
                 Config.Model config = Config.getModel();
                 List<String> list = new ArrayList<>();
                 if (stack.getItem() instanceof AxeItem) {

@@ -61,6 +61,8 @@ public class Config {
 
     public static class Model {
         public int limit = 64;
+
+        public boolean interact = false;
         public List<String> axe = new ArrayList<>(ImmutableList.of(
                 "minecraft:oak_log",
                 "minecraft:birch_log",

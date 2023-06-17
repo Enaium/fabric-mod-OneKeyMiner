@@ -11,5 +11,7 @@
   "command.limit.success": "设置限制为%d",
   "command.limit.get": "限制为%d",
   "command.action.add.success": "添加 %s",
-  "command.action.remove.success": "移除 %s"
+  "command.action.remove.success": "移除 %s",
+  "command.interact.get": "交互 %s",
+  "command.interact.success": "交互设置为 %s"
 }

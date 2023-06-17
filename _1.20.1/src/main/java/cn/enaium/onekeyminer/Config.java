@@ -17,7 +17,6 @@ package cn.enaium.onekeyminer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraft.client.MinecraftClient;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -60,6 +59,9 @@ public class Config {
 
     public static class Model {
         public int limit = 64;
+
+        public boolean interact = false;
+
         public List<String> axe = new ArrayList<>(List.of(
                 "minecraft:warped_stem",
                 "minecraft:crimson_stem",

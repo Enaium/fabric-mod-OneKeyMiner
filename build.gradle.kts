@@ -36,7 +36,7 @@ sourceSets {
 
 allprojects {
     group = "cn.enaium"
-    version = "1.6.1"
+    version = "1.7.0"
 }
 
 subprojects {
@@ -95,7 +95,7 @@ subprojects {
                 }
             }
         }
-        
+
         properties["modrinth.token"]?.let {
             configure<ModrinthExtension> {
                 projectId.set("MxjO3Kkh")

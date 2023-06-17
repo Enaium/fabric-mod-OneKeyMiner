@@ -7,9 +7,11 @@
   "button.shovel": "シャベル",
   "button.shears": "はさみ",
   "button.any": "任意",
-  "command.limit.error": "limitは0より大きくなければなりません",
-  "command.limit.success": "limitを{0}に設定しました",
+  "command.limit.error": "Limitは0より大きくなければなりません",
+  "command.limit.success": "Limitを{0}に設定しました",
   "command.limit.get": "Limitは{0}です",
   "command.action.add.success": "%sを追加しました",
-  "command.action.remove.success": "%sを削除しました"
+  "command.action.remove.success": "%sを削除しました",
+  "command.interact.get": "Interactは%sです",
+  "command.interact.success": "Interactを%sに設定しました"
 }

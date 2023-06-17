@@ -11,5 +11,7 @@
   "command.limit.success": "Set limit to %d",
   "command.limit.get": "Limit is %d",
   "command.action.add.success": "Add %s",
-  "command.action.remove.success": "Remove %s"
+  "command.action.remove.success": "Remove %s",
+  "command.interact.get": "Interact is %s",
+  "command.interact.success": "Set interact to %s"
 }

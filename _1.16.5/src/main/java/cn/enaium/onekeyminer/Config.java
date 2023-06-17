@@ -61,6 +61,9 @@ public class Config {
 
     public static class Model {
         public int limit = 64;
+
+        public boolean interact = false;
+
         public List<String> axe = new ArrayList<>(ImmutableList.of(
                 "minecraft:warped_stem",
                 "minecraft:crimson_stem",

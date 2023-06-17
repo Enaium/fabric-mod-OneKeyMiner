@@ -11,5 +11,7 @@
   "command.limit.success": "Limite définie sur %d",
   "command.limit.get": "Limite actuelle: %d",
   "command.action.add.success": "Ajouter %s",
-  "command.action.remove.success": "Supprimer %s"
+  "command.action.remove.success": "Supprimer %s",
+  "command.interact.get": "Interagir avec %s",
+  "command.interact.success": "Interagir avec %s"
 }

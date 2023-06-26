@@ -11,6 +11,10 @@ buildscript {
             name = "Fabric"
             url = uri("https://maven.fabricmc.net/")
         }
+        maven {
+            name = "legacy-fabric"
+            url = uri("https://repo.legacyfabric.net/repository/legacyfabric/")
+        }
         gradlePluginPortal()
         mavenCentral()
     }
@@ -21,6 +25,7 @@ buildscript {
 
     dependencies {
         classpath("net.fabricmc:fabric-loom:${loomVersion}")
+        classpath("net.legacyfabric:legacy-looming:${loomVersion}")
         classpath("com.modrinth.minotaur:Minotaur:${minotaurVersion}")
         classpath("com.github.breadmoirai:github-release:${githubReleaseVersion}")
     }
@@ -40,6 +45,10 @@ allprojects {
 }
 
 subprojects {
+    if (!name.startsWith("_")) {
+        return@subprojects
+    }
+
     apply {
         plugin("java")
         plugin("fabric-loom")
@@ -56,10 +65,28 @@ subprojects {
     version = "${property("minecraft.version")}-${version}"
 
     tasks.processResources {
-        inputs.property("version", project.version)
+        inputs.property("currentTimeMillis", System.currentTimeMillis())
 
         filesMatching("fabric.mod.json") {
-            expand(mapOf("version" to project.version.toString()))
+            expand(
+                mapOf(
+                    "version" to project.version.toString(),
+                    "minecraft_version" to properties["minecraft.version"].toString()
+                        .let { "${it.subSequence(0, it.lastIndexOf("."))}.x" },
+                    "java_version" to properties["java.version"].toString(),
+                    "api_name" to if (parent?.name == "legacy") "legacy-fabric-api" else "fabric-api"
+                )
+            )
+        }
+
+        filesMatching("onekeyminer.mixins.json") {
+            expand(
+                mapOf(
+                    "java_version" to properties["java.version"],
+                    "mixin_list" to file("src/main/java/cn/enaium/onekeyminer/mixin").listFiles()
+                        ?.joinToString(", ", "[", "]") { it.name.subSequence(0, it.name.lastIndexOf(".")).toString() }
+                )
+            )
         }
     }
 
@@ -73,10 +100,9 @@ subprojects {
         }
     }
 
+    //Legacy and Modern compatibility dependencies
     dependencies.add("minecraft", "com.mojang:minecraft:${property("minecraft.version")}")
-    dependencies.add("mappings", "net.fabricmc:yarn:${property("fabric.yarn.version")}:v2")
     dependencies.add("modImplementation", "net.fabricmc:fabric-loader:${property("fabric.loader.version")}")
-    dependencies.add("modImplementation", "net.fabricmc.fabric-api:fabric-api:${property("fabric.api.version")}")
 
     property("java.version").toString().toInt().let {
         tasks.withType<JavaCompile> {
@@ -90,7 +116,10 @@ subprojects {
     afterEvaluate {
         configurations.runtimeClasspath.get().forEach {
             if (it.name.startsWith("sponge-mixin")) {
-                tasks.withType<JavaExec> {
+                tasks.named<JavaExec>("runClient") {
+                    jvmArgs("-javaagent:${it.absolutePath}")
+                }
+                tasks.named<JavaExec>("runServer") {
                     jvmArgs("-javaagent:${it.absolutePath}")
                 }
             }

@@ -32,7 +32,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -48,7 +48,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -64,7 +64,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -80,7 +80,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -96,7 +96,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -112,7 +112,7 @@ jobs:
             legacy-fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -128,7 +128,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -144,7 +144,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -160,7 +160,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 8
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -176,7 +176,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 17
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -192,7 +192,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 17
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -208,7 +208,7 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 17
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
       - name: Upload jar to CurseForge
         uses: Kir-Antipov/mc-publish@v3.1
@@ -224,5 +224,5 @@ jobs:
             fabric-api
             fabric-language-kotlin
           java: 17
-          curseforge-id: 387108
+          curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}

@@ -46,8 +46,8 @@ public abstract class ServerPlayerInteractionManagerMixin {
     public abstract boolean tryBreakBlock(BlockPos pos);
 
     @Inject(at = @At(value = "HEAD"), method = "method_21717")
-    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, CallbackInfo ci) {
-        FinishMiningCallback.EVENT.invoker().interact(world, player, pos, (tryBreak) -> {
+    private void finishMining(BlockPos blockPos, PlayerActionC2SPacket.Action action, CallbackInfo ci) {
+        FinishMiningCallback.Companion.getEVENT().invoker().interact(world, player, blockPos, (tryBreak) -> {
             tryBreakBlock(tryBreak);
             return null;
         });
@@ -55,6 +55,6 @@ public abstract class ServerPlayerInteractionManagerMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;"), method = "interactBlock")
     public void interactBlock(PlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
-        UseOnBlockCallback.EVENT.invoker().interact(player, world, stack, hand, hitResult);
+        UseOnBlockCallback.Companion.getEVENT().invoker().interact(player, world, stack, hand, hitResult);
     }
 }

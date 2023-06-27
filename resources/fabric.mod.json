@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "cn.enaium.onekeyminer.OneKeyMiner"
+      "cn.enaium.onekeyminer.OneKeyMinerKt::initializer"
     ],
     "client": [
-      "cn.enaium.onekeyminer.ClientInitializer"
+      "cn.enaium.onekeyminer.OneKeyMinerKt::client"
     ]
   },
   "mixins": [

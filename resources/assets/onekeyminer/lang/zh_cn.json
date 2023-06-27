@@ -12,6 +12,8 @@
   "command.limit.get": "限制为%d",
   "command.action.add.success": "添加 %s",
   "command.action.remove.success": "移除 %s",
+  "command.action.notFound": "未找到方块 %s",
   "command.interact.get": "交互 %s",
-  "command.interact.success": "交互设置为 %s"
+  "command.interact.success": "交互设置为 %s",
+  "command.reload.success": "重载配置文件成功"
 }

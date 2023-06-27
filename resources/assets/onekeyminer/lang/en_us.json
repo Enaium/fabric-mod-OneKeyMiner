@@ -12,6 +12,8 @@
   "command.limit.get": "Limit is %d",
   "command.action.add.success": "Add %s",
   "command.action.remove.success": "Remove %s",
+  "command.action.notFound": "Block %s not found",
   "command.interact.get": "Interact is %s",
-  "command.interact.success": "Set interact to %s"
+  "command.interact.success": "Set interact to %s",
+  "command.reload.success": "Reloaded config successfully"
 }

@@ -1,5 +1,6 @@
 import com.github.breadmoirai.githubreleaseplugin.GithubReleaseExtension
 import com.modrinth.minotaur.ModrinthExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
@@ -22,12 +23,14 @@ buildscript {
     val loomVersion: String by project
     val minotaurVersion: String by project
     val githubReleaseVersion: String by project
+    val kotlinVersion: String by project
 
     dependencies {
         classpath("net.fabricmc:fabric-loom:${loomVersion}")
         classpath("net.legacyfabric:legacy-looming:${loomVersion}")
         classpath("com.modrinth.minotaur:Minotaur:${minotaurVersion}")
         classpath("com.github.breadmoirai:github-release:${githubReleaseVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     }
 }
 
@@ -41,7 +44,7 @@ sourceSets {
 
 allprojects {
     group = "cn.enaium"
-    version = "1.7.0"
+    version = "1.8.0"
 }
 
 subprojects {
@@ -51,6 +54,7 @@ subprojects {
 
     apply {
         plugin("java")
+        plugin("org.jetbrains.kotlin.jvm")
         plugin("fabric-loom")
         plugin("com.modrinth.minotaur")
         plugin("com.github.breadmoirai.github-release")
@@ -74,7 +78,7 @@ subprojects {
                     "minecraft_version" to properties["minecraft.version"].toString()
                         .let { "${it.subSequence(0, it.lastIndexOf("."))}.x" },
                     "java_version" to properties["java.version"].toString(),
-                    "api_name" to if (parent?.name == "legacy") "legacy-fabric-api" else "fabric-api"
+                    "api_name" to if (parent?.name == "legacy") "legacy-fabric-api-base" else "fabric-api-base"
                 )
             )
         }
@@ -103,6 +107,12 @@ subprojects {
     //Legacy and Modern compatibility dependencies
     dependencies.add("minecraft", "com.mojang:minecraft:${property("minecraft.version")}")
     dependencies.add("modImplementation", "net.fabricmc:fabric-loader:${property("fabric.loader.version")}")
+    dependencies.add(
+        "modImplementation",
+        "net.fabricmc:fabric-language-kotlin:1.9.5+kotlin.${property("kotlinVersion")}"
+    ) {
+        exclude(module = "*")
+    }
 
     property("java.version").toString().toInt().let {
         tasks.withType<JavaCompile> {
@@ -111,6 +121,13 @@ subprojects {
 
         java.sourceCompatibility = JavaVersion.toVersion(it)
         java.targetCompatibility = JavaVersion.toVersion(it)
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = properties["java.version"].toString().let { if (it == "8") "1.8" else it }
+        }
     }
 
     afterEvaluate {
@@ -134,7 +151,8 @@ subprojects {
                 versionType.set("release")
                 loaders.set(listOf("fabric"))
                 dependencies {
-                    required.project("fabric-api")
+                    required.project(if (parent?.name == "legacy") "legacy-fabric-api" else "fabric-api")
+                    required.project("fabric-language-kotlin")
                 }
                 uploadFile.set(tasks.named("remapJar"))
                 token.set(it.toString())
@@ -150,7 +168,7 @@ subprojects {
                 releaseName.set("$archivesBaseName-$version")
                 targetCommitish.set("master")
                 generateReleaseNotes.set(false)
-                body.set("$archivesBaseName-$version")
+                body.set(rootProject.file("changelog.md").readText(Charsets.UTF_8))
                 releaseAssets(listOf(tasks.named("remapJar")))
             }
         }

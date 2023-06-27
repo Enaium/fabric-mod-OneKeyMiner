@@ -18,7 +18,6 @@ package cn.enaium.onekeyminer.mixin;
 import cn.enaium.onekeyminer.callback.FinishMiningCallback;
 import cn.enaium.onekeyminer.callback.UseOnBlockCallback;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.server.world.ServerWorld;
@@ -47,8 +46,8 @@ public abstract class ServerPlayerInteractionManagerMixin {
     public abstract boolean tryBreakBlock(BlockPos pos);
 
     @Inject(at = @At(value = "HEAD"), method = "finishMining")
-    private void finishMining(BlockPos pos, PlayerActionC2SPacket.Action action, String reason, CallbackInfo ci) {
-        FinishMiningCallback.EVENT.invoker().interact(world, player, pos, (tryBreak) -> {
+    private void finishMining(BlockPos pos, int sequence, String reason, CallbackInfo ci) {
+        FinishMiningCallback.Companion.getEVENT().invoker().interact(world, player, pos, (tryBreak) -> {
             tryBreakBlock(tryBreak);
             return null;
         });
@@ -56,6 +55,6 @@ public abstract class ServerPlayerInteractionManagerMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;"), method = "interactBlock")
     public void interactBlock(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
-        UseOnBlockCallback.EVENT.invoker().interact(player, world, stack, hand, hitResult);
+        UseOnBlockCallback.Companion.getEVENT().invoker().interact(player, world, stack, hand, hitResult);
     }
 }

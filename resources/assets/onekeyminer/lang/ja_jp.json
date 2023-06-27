@@ -12,6 +12,8 @@
   "command.limit.get": "Limitは{0}です",
   "command.action.add.success": "%sを追加しました",
   "command.action.remove.success": "%sを削除しました",
+  "command.action.notFound": "ブロック %s が見つかりません",
   "command.interact.get": "Interactは%sです",
-  "command.interact.success": "Interactを%sに設定しました"
+  "command.interact.success": "Interactを%sに設定しました",
+  "command.reload.success": "設定ファイルをリロードしました"
 }

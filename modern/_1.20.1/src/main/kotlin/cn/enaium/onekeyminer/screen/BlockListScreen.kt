@@ -21,7 +21,6 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.text.Text
-import java.util.function.Consumer
 
 /**
  * @author Enaium

@@ -26,7 +26,6 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.LiteralText
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.registry.Registry
-import java.util.function.Consumer
 import java.util.stream.Collectors
 
 
@@ -62,7 +61,7 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
         super.init()
     }
 
-    fun get(): List<BlockListWidget.Entry?> {
+    fun get(): List<BlockListWidget.Entry> {
         return Registry.BLOCK.stream().filter { it: Block ->
             if (textFieldWidget!!.text != "") {
                 return@filter it.asItem().toString()

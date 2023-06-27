@@ -16,7 +16,6 @@
 package cn.enaium.onekeyminer.util
 
 import net.minecraft.block.Block
-import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import java.util.*
@@ -70,7 +69,8 @@ fun findBlocks(world: World, centerPos: BlockPos, limit: Int): Set<BlockPos> {
                             // Ignore the current position and only add unvisited adjacent positions
                             if (xOffset != 0 || yOffset != 0 || zOffset != 0) {
                                 assert(currentPos != null)
-                                val adjacentPos = BlockPos(currentPos!!.x + xOffset, currentPos.y + yOffset, currentPos.z + zOffset)
+                                val adjacentPos =
+                                    BlockPos(currentPos!!.x + xOffset, currentPos.y + yOffset, currentPos.z + zOffset)
                                 if (!visited.contains(adjacentPos)) {
                                     queue.offer(adjacentPos)
                                     visited.add(adjacentPos)

@@ -25,7 +25,6 @@ import net.minecraft.client.gui.widget.TextFieldWidget
 import net.minecraft.text.LiteralText
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.registry.Registry
-import java.util.function.Consumer
 import java.util.stream.Collectors
 
 

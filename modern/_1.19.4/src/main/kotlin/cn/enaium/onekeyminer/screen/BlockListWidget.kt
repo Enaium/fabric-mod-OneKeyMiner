@@ -57,7 +57,7 @@ class BlockListWidget {
                 y.toFloat(),
                 0xFFFFFF
             )
-            super.render(matrices, index,y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
+            super.render(matrices, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
         }
     }
 }

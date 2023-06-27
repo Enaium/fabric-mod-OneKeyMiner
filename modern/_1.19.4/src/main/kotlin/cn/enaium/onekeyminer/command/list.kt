@@ -68,9 +68,7 @@ fun listCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
                             }
                         }
                         if (previous != null) {
-                            if (previous != null) {
                             context.source.sendFeedback(previous, false)
-                        }
                         }
                         Command.SINGLE_SUCCESS
                     })

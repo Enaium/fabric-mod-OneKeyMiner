@@ -25,7 +25,6 @@ import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.gui.widget.TextFieldWidget
 import net.minecraft.registry.Registries
 import net.minecraft.text.Text
-import java.util.function.Consumer
 import java.util.stream.Collectors
 
 /**
@@ -48,7 +47,7 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
             }
         }.dimensions(width / 2 - 100, height - 35, 200, 20).build()
         get().forEach { entry: BlockListWidget.Entry -> entryListWidget!!.addEntry(entry) }
-        textFieldWidget!!.setChangedListener { s: String? ->
+        textFieldWidget!!.setChangedListener {
             entryListWidget!!.replaceEntries(get())
             entryListWidget!!.setSelected(null)
         }
@@ -58,7 +57,7 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
         super.init()
     }
 
-    fun get(): List<BlockListWidget.Entry?> {
+    fun get(): List<BlockListWidget.Entry> {
         return Registries.BLOCK.stream().filter { it: Block ->
             if (textFieldWidget!!.text != "") {
                 return@filter it.asItem().toString()

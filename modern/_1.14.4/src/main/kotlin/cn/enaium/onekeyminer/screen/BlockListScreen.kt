@@ -22,7 +22,6 @@ import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.text.LiteralText
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
-import java.util.function.Consumer
 
 
 /**

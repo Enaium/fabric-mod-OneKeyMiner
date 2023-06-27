@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier
  * @author Enaium
  */
 class BlockListWidget {
-    class Entry(@JvmField val name: String) : ListWidget.Entry<Entry>() {
+    class Entry(val name: String) : ListWidget.Entry<Entry>() {
         override fun render(
             context: DrawContext,
             index: Int,
@@ -58,7 +58,7 @@ class BlockListWidget {
                 y,
                 0xFFFFFF, false
             )
-            super.render(context, index,y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
+            super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
         }
     }
 }

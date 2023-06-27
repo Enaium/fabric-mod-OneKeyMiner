@@ -8,3 +8,5 @@
 # 🐞 Bug fixes
 
 - Remove blocks that are not available in the game version in the default config.
+- The `/onekeyminer <AXE|HOE|PICKAXE|SHOVEL|SHEARS|ANY> list` command does not work if the list is empty in the server
+  environment.

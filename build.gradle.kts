@@ -155,6 +155,7 @@ subprojects {
                     required.project("fabric-language-kotlin")
                 }
                 uploadFile.set(tasks.named("remapJar"))
+                changelog.set(rootProject.file("changelog.md").readText(Charsets.UTF_8))
                 token.set(it.toString())
             }
         }

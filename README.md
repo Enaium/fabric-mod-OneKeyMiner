@@ -16,3 +16,10 @@ A minecraft mod for Fabric that allows you to mine blocks with one mining action
 - `/onkeyminer interact` - Displays the current interact is enabled or not.(Default: false)
 - `/onkeyminer interact <true|false>` - Enables or disables the `interact`.Some of the blocks can interact, such
   as `Grass Block`, it can use `Hoe` to turn into `Farmland` or can use `Shovel` to turn into `Path`.
+- `/onekeyminer reload` - Reloads the config file.
+
+### Legacy Version
+
+- `/onekeyminer screen` - Changed to `/onekeyminer-screen`
+- Don't have the `/onekeyminer-screen` command in 1.7 and below.
+- The block id is not subdivision, it is a whole, such as `minecraft:log`, not `minecraft:oak_log` etc.

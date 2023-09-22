@@ -57,7 +57,7 @@ class BlockListScreen(private val list: MutableList<String>) : Screen(Text.liter
     }
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(context)
+        renderBackground(context, mouseX, mouseY, delta)
         removeButton!!.active = entryListWidget!!.selectedOrNull != null
         super.render(context, mouseX, mouseY, delta)
     }

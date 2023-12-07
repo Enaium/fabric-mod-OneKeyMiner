@@ -29,7 +29,7 @@ class BlockListScreen(private val list: MutableList<String>) : Screen(Text.liter
     private var entryListWidget: ListWidget<BlockListWidget.Entry>? = null
     private var removeButton: ButtonWidget? = null
     override fun init() {
-        entryListWidget = ListWidget(client, width, height, 50, height - 50, 24)
+        entryListWidget = ListWidget(client, width, height - 100, 50, 24)
         list.forEach { it: String ->
             entryListWidget!!.addEntry(
                 BlockListWidget.Entry(

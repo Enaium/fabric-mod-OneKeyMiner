@@ -44,7 +44,7 @@ sourceSets {
 
 allprojects {
     group = "cn.enaium"
-    version = "1.8.0"
+    version = "1.8.1"
 }
 
 subprojects {
@@ -109,7 +109,7 @@ subprojects {
     dependencies.add("modImplementation", "net.fabricmc:fabric-loader:${property("fabric.loader.version")}")
     dependencies.add(
         "modImplementation",
-        "net.fabricmc:fabric-language-kotlin:1.10.10+kotlin.${property("kotlinVersion")}"
+        "net.fabricmc:fabric-language-kotlin:${property("fabricKotlinVersion")}+kotlin.${property("kotlinVersion")}"
     ) {
         exclude(module = "*")
     }

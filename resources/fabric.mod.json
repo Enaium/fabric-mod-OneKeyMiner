@@ -30,7 +30,8 @@
     "fabricloader": "*",
     "minecraft": "${minecraft_version}",
     "java": ">=${java_version}",
-    "${api_name}": "*"
+    "${api_name}": "*",
+    "fabric-language-kotlin": "*"
   },
   "suggests": {
     "another-mod": "*"

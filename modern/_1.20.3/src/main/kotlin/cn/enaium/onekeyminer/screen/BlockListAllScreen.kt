@@ -35,7 +35,7 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
     private var textFieldWidget: TextFieldWidget? = null
     private var addButton: ButtonWidget? = null
     public override fun init() {
-        entryListWidget = ListWidget(client, width, height, 50, height - 50, 24)
+        entryListWidget = ListWidget(client, width, height - 100, 50, 24)
         textFieldWidget =
             TextFieldWidget(MinecraftClient.getInstance().textRenderer, width / 2 - 100, 15, 200, 20, Text.literal(""))
         addButton = ButtonWidget.builder(Text.translatable("button.add")) { e: ButtonWidget? ->

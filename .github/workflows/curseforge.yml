@@ -215,11 +215,11 @@ jobs:
         with:
           name: ""
           version: ""
-          files-primary: modern/_1.20.1/build/libs/OKM-*.jar
+          files-primary: modern/_1.20.3/build/libs/OKM-*.jar
           files-secondary: ""
           loaders: fabric
           game-versions: |
-            1.20.1
+            1.20.3
           dependencies: |
             fabric-api
             fabric-language-kotlin

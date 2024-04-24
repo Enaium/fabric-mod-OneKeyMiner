@@ -49,7 +49,7 @@ fun actionCommand(dispatcher: CommandDispatcher<ServerCommandSource>, registryAc
                             ).executes { context: CommandContext<ServerCommandSource> ->
                                 val block = context.getArgument("block", BlockStateArgument::class.java)
                                 val itemStack = block.blockState.block.asItem().defaultStack
-                                val blockName: String = getName(block.blockState.block.lootTableId)
+                                val blockName: String = getName(block.blockState.block.lootTableKey.value)
                                 when (action) {
                                     Action.ADD -> {
                                         when (tool) {

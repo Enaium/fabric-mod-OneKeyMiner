@@ -68,7 +68,7 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
                 return@filter true
             }
         }
-            .map { it: Block -> BlockListWidget.Entry(getName(it.lootTableId)) }
+            .map { it: Block -> BlockListWidget.Entry(getName(it.lootTableKey.value)) }
             .collect(Collectors.toList())
     }
 

@@ -28,7 +28,7 @@ fun getName(identifier: Identifier): String {
 }
 
 fun getName(world: World, blockPos: BlockPos): String {
-    return getName(world.getBlockState(blockPos).block.lootTableId)
+    return getName(world.getBlockState(blockPos).block.lootTableKey.value)
 }
 
 /**

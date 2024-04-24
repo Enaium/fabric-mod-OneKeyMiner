@@ -215,14 +215,14 @@ jobs:
         with:
           name: ""
           version: ""
-          files-primary: modern/_1.20.3/build/libs/OKM-*.jar
+          files-primary: modern/_1.20.5/build/libs/OKM-*.jar
           files-secondary: ""
           loaders: fabric
           game-versions: |
-            1.20.3
+            1.20.5
           dependencies: |
             fabric-api
             fabric-language-kotlin
-          java: 17
+          java: 21
           curseforge-id: 626666
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}

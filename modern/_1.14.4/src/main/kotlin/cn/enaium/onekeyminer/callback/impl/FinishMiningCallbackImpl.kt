@@ -70,7 +70,12 @@ class FinishMiningCallbackImpl : FinishMiningCallback {
                 }
                 val name = getName(world, pos)
                 if (list.contains(name)) {
-                    findBlocks(world, pos, config.limit).forEach { tryBreak(it) }
+                    findBlocks(world, pos, config.limit).forEach {
+                        if (player.inventory.mainHandStack.isEmpty) {
+                            return@forEach
+                        }
+                        tryBreak(it)
+                    }
                 }
             }
         }

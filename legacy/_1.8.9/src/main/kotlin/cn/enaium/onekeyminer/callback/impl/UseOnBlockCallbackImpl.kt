@@ -16,8 +16,10 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Config
+import cn.enaium.onekeyminer.active
 import cn.enaium.onekeyminer.callback.UseOnBlockCallback
 import cn.enaium.onekeyminer.util.findBlocks
+import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack
@@ -39,7 +41,7 @@ class UseOnBlockCallbackImpl : UseOnBlockCallback {
     ) {
         stack ?: return
         val config = Config.model
-        if (config.interact && (stack.item is ToolItem || stack.item is HoeItem) && player.isSneaking) {
+        if (config.interact && (stack.item is ToolItem || stack.item is HoeItem) && if (MinecraftClient.getInstance().player == player && active != null) active!!.isPressed else player.isSneaking) {
             for (block in findBlocks(world, blockPos, config.limit)) {
                 stack.item.use(stack, player, world, block, direction, 0f, 0f, 0f)
             }

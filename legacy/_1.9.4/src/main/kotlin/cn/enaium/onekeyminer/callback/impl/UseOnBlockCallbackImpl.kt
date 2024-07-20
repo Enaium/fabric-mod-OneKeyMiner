@@ -41,7 +41,7 @@ class UseOnBlockCallbackImpl : UseOnBlockCallback {
     ) {
         stack ?: return
         val config = Config.model
-        if (config.interact && (stack.item is ToolItem || stack.item is HoeItem) && player.isSneaking) {
+        if (config.interact && (stack.item is ToolItem || stack.item is HoeItem) && if (MinecraftClient.getInstance().player == player && active != null) active!!.isPressed else player.isSneaking) {
             for (block in findBlocks(world, blockPos, config.limit)) {
                 stack.item.method_3355(stack, player, world, block, hand, direction, 0f, 0f, 0f)
             }

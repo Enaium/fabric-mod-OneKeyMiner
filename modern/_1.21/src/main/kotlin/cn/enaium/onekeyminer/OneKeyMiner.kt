@@ -23,11 +23,16 @@ import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackImpl
 import cn.enaium.onekeyminer.command.*
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.minecraft.client.option.KeyBinding
+import net.minecraft.client.util.InputUtil
 import net.minecraft.command.CommandRegistryAccess
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
+import org.lwjgl.glfw.GLFW
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 
@@ -51,14 +56,27 @@ fun initializer() {
     Runtime.getRuntime().addShutdownHook(Thread(Config::save))
 }
 
+var active: KeyBinding? = null
+
 fun client() {
+    active = KeyBindingHelper.registerKeyBinding(
+        KeyBinding(
+            "key.${ID}.active",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_GRAVE_ACCENT,
+            "category.${ID}.title"
+        )
+    )
+
     CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, registryAccess: CommandRegistryAccess, environment: CommandManager.RegistrationEnvironment ->
         screenCommand(dispatcher)
     })
 }
 
-val LOGGER = LoggerFactory.getLogger("OneKeyMiner")
+const val ID = "onekeyminer"
 
-val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal("onekeyminer").requires { source ->
+val LOGGER: Logger = LoggerFactory.getLogger("OneKeyMiner")
+
+val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal(ID).requires { source ->
     source.hasPermissionLevel(4)
 }

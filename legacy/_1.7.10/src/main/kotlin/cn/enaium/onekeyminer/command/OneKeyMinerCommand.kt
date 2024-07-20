@@ -143,17 +143,17 @@ class OneKeyMinerCommand : AbstractCommand() {
         strings: Array<String>,
     ): List<String> {
         if (strings.size == 1) {
-            return listOf("reload", "limit", "interact") + Tool.values().map { it.name }
+            return listOf("reload", "limit", "interact") + Tool.entries.map { it.name }
         }
         if (strings.size == 2) {
             return when (strings[0]) {
                 "limit" -> listOf(Random.nextInt(1..64).toString())
                 "interact" -> listOf("true", "false")
-                else -> listOf("list") + Action.values().map { it.name }
+                else -> listOf("list") + Action.entries.map { it.name }
             }
         }
         if (strings.size == 3) {
-            if (Tool.values().map { it.name }.contains(strings[0]) && Action.values().map { it.name }
+            if (Tool.entries.map { it.name }.contains(strings[0]) && Action.entries.map { it.name }
                     .contains(strings[1])) {
                 return Block.REGISTRY.keySet().map { it.toString() }
             }

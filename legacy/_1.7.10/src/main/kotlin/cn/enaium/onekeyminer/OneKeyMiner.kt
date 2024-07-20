@@ -21,7 +21,9 @@ import cn.enaium.onekeyminer.callback.UseOnBlockCallback
 import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackImpl
 import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackImpl
 import cn.enaium.onekeyminer.command.OneKeyMinerCommand
+import net.legacyfabric.fabric.api.client.keybinding.v1.KeyBindingHelper
 import net.legacyfabric.fabric.api.registry.CommandRegistry
+import net.minecraft.client.option.KeyBinding
 
 fun initializer() {
     println("Hello OneKeyMiner world!")
@@ -33,6 +35,16 @@ fun initializer() {
     Runtime.getRuntime().addShutdownHook(Thread(Config::save))
 }
 
-fun client() {
+var active: KeyBinding? = null
 
+fun client() {
+    active = KeyBindingHelper.registerKeyBinding(
+        KeyBinding(
+            "key.${ID}.active",
+            41,
+            "category.${ID}.title"
+        )
+    )
 }
+
+const val ID = "onekeyminer"

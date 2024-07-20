@@ -16,9 +16,11 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Config
+import cn.enaium.onekeyminer.active
 import cn.enaium.onekeyminer.callback.FinishMiningCallback
 import cn.enaium.onekeyminer.util.findBlocks
 import cn.enaium.onekeyminer.util.getName
+import net.minecraft.client.MinecraftClient
 import net.minecraft.item.*
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -38,7 +40,7 @@ class FinishMiningCallbackImpl : FinishMiningCallback {
         val stack = player.inventory.getStack(player.inventory.selectedSlot)
         if (stack != null) {
             val canMine = stack.item.canMine(world.getBlockState(pos), world, pos, player)
-            if (canMine && (stack.item is MiningToolItem || stack.item is ShearsItem) && player.isSneaking) {
+            if (canMine && (stack.item is MiningToolItem || stack.item is ShearsItem) && if (MinecraftClient.getInstance().player == player && active != null) active!!.isPressed else player.isSneaking) {
                 val config = Config.model
                 val list: MutableList<String> = ArrayList()
                 when (stack.item) {

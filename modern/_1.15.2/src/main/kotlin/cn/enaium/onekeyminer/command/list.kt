@@ -35,7 +35,7 @@ import net.minecraft.util.registry.Registry
  * @author Enaium
  */
 fun listCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
-    for (tool in Tool.values()) {
+    for (tool in Tool.entries) {
         dispatcher.register(
             ROOT.then(
                 CommandManager.literal(tool.name)

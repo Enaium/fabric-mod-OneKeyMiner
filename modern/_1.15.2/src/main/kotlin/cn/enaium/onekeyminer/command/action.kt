@@ -37,8 +37,8 @@ import net.minecraft.util.Formatting
  * @author Enaium
  */
 fun actionCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
-    for (tool in Tool.values()) {
-        for (action in Action.values()) {
+    for (tool in Tool.entries) {
+        for (action in Action.entries) {
             dispatcher.register(
                 ROOT.then(
                     CommandManager.literal(tool.name).then(

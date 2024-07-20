@@ -23,3 +23,7 @@ A minecraft mod for Fabric that allows you to mine blocks with one mining action
 - `/onekeyminer screen` - Changed to `/onekeyminer-screen`
 - Don't have the `/onekeyminer-screen` command in 1.7 and below.
 - The block id is not subdivision, it is a whole, such as `minecraft:log`, not `minecraft:oak_log` etc.
+
+### Custom Key(⚠️Singleplayer only)
+
+The mod will be activated when the custom is pressed

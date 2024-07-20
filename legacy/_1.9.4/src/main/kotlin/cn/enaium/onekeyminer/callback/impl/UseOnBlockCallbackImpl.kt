@@ -16,8 +16,10 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Config
+import cn.enaium.onekeyminer.active
 import cn.enaium.onekeyminer.callback.UseOnBlockCallback
 import cn.enaium.onekeyminer.util.findBlocks
+import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.HoeItem
 import net.minecraft.item.ItemStack

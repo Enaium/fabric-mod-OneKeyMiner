@@ -13,7 +13,7 @@
   "command.action.add.success": "新增 %s",
   "command.action.remove.success": "移除 %s",
   "command.action.notFound": "找不到方塊 %s",
-  "command.interact.get": "互動為 %s",
+  "command.interact.get": "互動 %s",
   "command.interact.success": "設定互動為 %s",
   "command.reload.success": "設定檔重新載入成功",
   "key.onekeyminer.active": "啟用",

@@ -1,0 +1,21 @@
+{
+  "button.add": "新增",
+  "button.remove": "移除",
+  "button.axe": "斧",
+  "button.hoe": "鋤",
+  "button.pickaxe": "鎬",
+  "button.shovel": "鏟",
+  "button.shears": "剪刀",
+  "button.any": "任何",
+  "command.limit.error": "限制必須大於 0",
+  "command.limit.success": "設定限制為 %d",
+  "command.limit.get": "限制為 %d",
+  "command.action.add.success": "新增 %s",
+  "command.action.remove.success": "移除 %s",
+  "command.action.notFound": "找不到方塊 %s",
+  "command.interact.get": "互動為 %s",
+  "command.interact.success": "設定互動為 %s",
+  "command.reload.success": "設定檔重新載入成功",
+  "key.onekeyminer.active": "啟用",
+  "category.onekeyminer.title": "一鍵礦工"
+}

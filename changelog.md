@@ -1,7 +1,7 @@
-# 🆕 Features
+# 🛠️ Changes
 
-- Replace the sneak key with a custom key(⚠️Singleplayer only)
+- Add translation for the mod(#9)
 
 # 🐞 Bug fixes
 
-- The block will be broken with empty hand while the hand stack is empty
+- Cannot load class in environment type SERVER(#10)

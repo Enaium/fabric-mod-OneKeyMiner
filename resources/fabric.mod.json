@@ -20,7 +20,10 @@
       "cn.enaium.onekeyminer.OneKeyMinerKt::initializer"
     ],
     "client": [
-      "cn.enaium.onekeyminer.OneKeyMinerKt::client"
+      "cn.enaium.onekeyminer.Client::client"
+    ],
+    "server": [
+      "cn.enaium.onekeyminer.Server::server"
     ]
   },
   "mixins": [

@@ -16,11 +16,9 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Config
-import cn.enaium.onekeyminer.active
 import cn.enaium.onekeyminer.callback.FinishMiningCallback
 import cn.enaium.onekeyminer.util.findBlocks
 import cn.enaium.onekeyminer.util.getName
-import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
 import net.minecraft.util.math.BlockPos
@@ -29,7 +27,7 @@ import net.minecraft.world.World
 /**
  * @author Enaium
  */
-class FinishMiningCallbackImpl : FinishMiningCallback {
+abstract class FinishMiningCallbackImpl : FinishMiningCallback {
     override fun interact(
         world: World,
         player: PlayerEntity,
@@ -38,7 +36,7 @@ class FinishMiningCallbackImpl : FinishMiningCallback {
     ) {
         val stack = player.inventory.getInvStack(player.inventory.selectedSlot)
         if (stack != null) {
-            if ((stack.item is ToolItem || stack.item is HoeItem || stack.item is ShearsItem) && if (MinecraftClient.getInstance().field_3805 == player && active != null) active!!.isPressed else player.isSneaking) {
+            if ((stack.item is ToolItem || stack.item is HoeItem || stack.item is ShearsItem) && condition(player)) {
                 val config = Config.model
                 val list: MutableList<String> = ArrayList()
                 when (stack.item) {
@@ -78,4 +76,6 @@ class FinishMiningCallbackImpl : FinishMiningCallback {
             }
         }
     }
+
+    abstract fun condition(player: PlayerEntity): Boolean
 }

@@ -18,8 +18,10 @@ package cn.enaium.onekeyminer
 
 import cn.enaium.onekeyminer.callback.FinishMiningCallback
 import cn.enaium.onekeyminer.callback.UseOnBlockCallback
-import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackImpl
-import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackImpl
+import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackClientImpl
+import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackServerImpl
+import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackClientImpl
+import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackServerImpl
 import cn.enaium.onekeyminer.command.OneKeyMinerCommand
 import cn.enaium.onekeyminer.command.ScreenCommand
 import net.legacyfabric.fabric.api.client.keybinding.v1.KeyBindingHelper
@@ -29,25 +31,37 @@ import net.minecraft.client.option.KeyBinding
 fun initializer() {
     println("Hello OneKeyMiner world!")
     CommandRegistry.INSTANCE.register(OneKeyMinerCommand())
-    FinishMiningCallback.EVENT.register(FinishMiningCallbackImpl())
-    UseOnBlockCallback.EVENT.register(UseOnBlockCallbackImpl())
 
     Config.load()
     Runtime.getRuntime().addShutdownHook(Thread(Config::save))
 }
 
-var active: KeyBinding? = null
+object Client {
+    var active: KeyBinding? = null
 
-fun client() {
-    active = KeyBindingHelper.registerKeyBinding(
-        KeyBinding(
-            "key.${ID}.active",
-            41,
-            "category.${ID}.title"
+    @JvmStatic
+    fun client() {
+        active = KeyBindingHelper.registerKeyBinding(
+            KeyBinding(
+                "key.${ID}.active",
+                41,
+                "category.${ID}.title"
+            )
         )
-    )
 
-    CommandRegistry.INSTANCE.register(ScreenCommand())
+        FinishMiningCallback.EVENT.register(FinishMiningCallbackClientImpl())
+        UseOnBlockCallback.EVENT.register(UseOnBlockCallbackClientImpl())
+
+        CommandRegistry.INSTANCE.register(ScreenCommand())
+    }
+}
+
+object Server {
+    @JvmStatic
+    fun server() {
+        FinishMiningCallback.EVENT.register(FinishMiningCallbackServerImpl())
+        UseOnBlockCallback.EVENT.register(UseOnBlockCallbackServerImpl())
+    }
 }
 
 const val ID = "onekeyminer"

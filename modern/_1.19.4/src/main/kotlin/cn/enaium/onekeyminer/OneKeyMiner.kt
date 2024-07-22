@@ -18,8 +18,8 @@ package cn.enaium.onekeyminer
 
 import cn.enaium.onekeyminer.callback.FinishMiningCallback
 import cn.enaium.onekeyminer.callback.UseOnBlockCallback
-import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackImpl
-import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackImpl
+import cn.enaium.onekeyminer.callback.impl.FinishMiningCallbackServerImpl
+import cn.enaium.onekeyminer.callback.impl.UseOnBlockCallbackServerImpl
 import cn.enaium.onekeyminer.command.*
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
@@ -49,28 +49,37 @@ fun initializer() {
         reloadCommand(dispatcher)
     })
 
-    FinishMiningCallback.EVENT.register(FinishMiningCallbackImpl())
-    UseOnBlockCallback.EVENT.register(UseOnBlockCallbackImpl())
 
     Config.load()
     Runtime.getRuntime().addShutdownHook(Thread(Config::save))
 }
 
-var active: KeyBinding? = null
+object Client {
+    var active: KeyBinding? = null
 
-fun client() {
-    active = KeyBindingHelper.registerKeyBinding(
-        KeyBinding(
-            "key.${ID}.active",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_GRAVE_ACCENT,
-            "category.${ID}.title"
+    @JvmStatic
+    fun client() {
+        active = KeyBindingHelper.registerKeyBinding(
+            KeyBinding(
+                "key.${ID}.active",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_GRAVE_ACCENT,
+                "category.${ID}.title"
+            )
         )
-    )
 
-    CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, registryAccess: CommandRegistryAccess, environment: CommandManager.RegistrationEnvironment ->
-        screenCommand(dispatcher)
-    })
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, registryAccess: CommandRegistryAccess, environment: CommandManager.RegistrationEnvironment ->
+            screenCommand(dispatcher)
+        })
+    }
+}
+
+object Server {
+    @JvmStatic
+    fun server() {
+        FinishMiningCallback.EVENT.register(FinishMiningCallbackServerImpl())
+        UseOnBlockCallback.EVENT.register(UseOnBlockCallbackServerImpl())
+    }
 }
 
 const val ID = "onekeyminer"

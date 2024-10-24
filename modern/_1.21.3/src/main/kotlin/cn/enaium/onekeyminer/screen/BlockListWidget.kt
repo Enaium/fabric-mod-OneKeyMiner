@@ -45,8 +45,8 @@ class BlockListWidget {
                 context.drawItem(itemStack, x, y)
                 context.drawText(
                     textRenderer,
-                    Text.translatable(itemStack.translationKey),
-                    (x + entryWidth - textRenderer.getWidth(Text.translatable(itemStack.translationKey).string)),
+                    itemStack.name,
+                    (x + entryWidth - textRenderer.getWidth(itemStack.name)),
                     (y + textRenderer.fontHeight),
                     0xFFFFFF, false
                 )

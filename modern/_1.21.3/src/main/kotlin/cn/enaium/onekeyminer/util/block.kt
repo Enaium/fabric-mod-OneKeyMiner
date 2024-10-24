@@ -15,6 +15,7 @@
  */
 package cn.enaium.onekeyminer.util
 
+import net.minecraft.registry.Registries
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -28,7 +29,7 @@ fun getName(identifier: Identifier): String {
 }
 
 fun getName(world: World, blockPos: BlockPos): String {
-    return getName(world.getBlockState(blockPos).block.lootTableKey.value)
+    return Registries.BLOCK.getEntry(world.getBlockState(blockPos).block).idAsString
 }
 
 /**

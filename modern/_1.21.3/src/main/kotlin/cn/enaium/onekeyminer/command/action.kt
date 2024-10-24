@@ -26,6 +26,7 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.CommandRegistryAccess
 import net.minecraft.command.argument.BlockStateArgument
 import net.minecraft.command.argument.BlockStateArgumentType
+import net.minecraft.registry.Registries
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.HoverEvent
@@ -49,7 +50,7 @@ fun actionCommand(dispatcher: CommandDispatcher<ServerCommandSource>, registryAc
                             ).executes { context: CommandContext<ServerCommandSource> ->
                                 val block = context.getArgument("block", BlockStateArgument::class.java)
                                 val itemStack = block.blockState.block.asItem().defaultStack
-                                val blockName: String = getName(block.blockState.block.lootTableKey.value)
+                                val blockName: String = Registries.BLOCK.getEntry(block.blockState.block).idAsString
                                 when (action) {
                                     Action.ADD -> {
                                         when (tool) {

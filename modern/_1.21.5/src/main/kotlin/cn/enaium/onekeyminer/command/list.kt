@@ -52,11 +52,8 @@ fun listCommand(dispatcher: CommandDispatcher<ServerCommandSource>) {
                             val item = Text.literal(list[i])
                                 .styled { style: Style ->
                                     style.withHoverEvent(
-                                        HoverEvent(
-                                            HoverEvent.Action.SHOW_ITEM,
-                                            HoverEvent.ItemStackContent(
-                                                Registries.BLOCK[Identifier.tryParse(list[i])].asItem().defaultStack
-                                            )
+                                        HoverEvent.ShowItem(
+                                            Registries.BLOCK[Identifier.tryParse(list[i])].asItem().defaultStack
                                         )
                                     )
                                 }

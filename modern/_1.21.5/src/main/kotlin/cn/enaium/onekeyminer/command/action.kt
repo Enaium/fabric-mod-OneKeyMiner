@@ -19,7 +19,6 @@ import cn.enaium.onekeyminer.Config
 import cn.enaium.onekeyminer.ROOT
 import cn.enaium.onekeyminer.enums.Action
 import cn.enaium.onekeyminer.enums.Tool
-import cn.enaium.onekeyminer.util.getName
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
@@ -66,9 +65,8 @@ fun actionCommand(dispatcher: CommandDispatcher<ServerCommandSource>, registryAc
                                                 "command.action.add.success",
                                                 Text.literal(blockName).styled { style: Style ->
                                                     style.withColor(Formatting.AQUA).withHoverEvent(
-                                                        HoverEvent(
-                                                            HoverEvent.Action.SHOW_ITEM,
-                                                            HoverEvent.ItemStackContent(itemStack)
+                                                        HoverEvent.ShowItem(
+                                                            itemStack
                                                         )
                                                     )
                                                 }
@@ -90,9 +88,8 @@ fun actionCommand(dispatcher: CommandDispatcher<ServerCommandSource>, registryAc
                                                 "command.action.remove.success",
                                                 Text.literal(blockName).styled { style: Style ->
                                                     style.withColor(Formatting.AQUA).withHoverEvent(
-                                                        HoverEvent(
-                                                            HoverEvent.Action.SHOW_ITEM,
-                                                            HoverEvent.ItemStackContent(itemStack)
+                                                        HoverEvent.ShowItem(
+                                                            itemStack
                                                         )
                                                     )
                                                 }

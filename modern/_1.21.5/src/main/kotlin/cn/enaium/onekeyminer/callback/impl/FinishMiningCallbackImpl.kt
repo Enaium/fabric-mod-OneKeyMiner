@@ -4,7 +4,8 @@ import cn.enaium.onekeyminer.Config
 import cn.enaium.onekeyminer.callback.FinishMiningCallback
 import cn.enaium.onekeyminer.util.findBlocks
 import cn.enaium.onekeyminer.util.getName
-import net.minecraft.item.*
+import net.minecraft.item.ShearsItem
+import net.minecraft.registry.tag.ItemTags
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
@@ -22,39 +23,29 @@ abstract class FinishMiningCallbackImpl : FinishMiningCallback {
     ): ActionResult {
         val stack = player.inventory.getStack(player.inventory.selectedSlot)
         if (stack != null) {
-            val canMine = stack.item.canMine(world.getBlockState(pos), world, pos, player)
-            if (canMine && (stack.item is MiningToolItem || stack.item is ShearsItem) && condition(player)) {
+            val canMine = stack.item.canMine(stack, world.getBlockState(pos), world, pos, player)
+            if (canMine && condition(player)) {
                 val config = Config.model
                 val list: MutableList<String> = ArrayList()
+                if (stack.streamTags().anyMatch { it == ItemTags.AXES }) {
+                    list.addAll(config.axe)
+                } else if (stack.streamTags().anyMatch { it == ItemTags.HOES }) {
+                    list.addAll(config.hoe)
+                } else if (stack.streamTags().anyMatch { it == ItemTags.PICKAXES }) {
+                    list.addAll(config.pickaxe)
+                } else if (stack.streamTags().anyMatch { it == ItemTags.SHOVELS }) {
+                    list.addAll(config.shovel)
+                }
+
                 when (stack.item) {
-                    is AxeItem -> {
-                        list.addAll(config.axe)
-                    }
-
-                    is HoeItem -> {
-                        list.addAll(config.hoe)
-                    }
-
-                    is PickaxeItem -> {
-                        list.addAll(config.pickaxe)
-                    }
-
-                    is ShovelItem -> {
-                        list.addAll(config.shovel)
-                    }
-
                     is ShearsItem -> {
                         list.addAll(config.shears)
-                    }
-
-                    is MiningToolItem -> {
-                        list.addAll(config.any)
                     }
                 }
                 val name = getName(world, pos)
                 if (list.contains(name)) {
                     findBlocks(world, pos, config.limit).forEach {
-                        if (player.inventory.mainHandStack.isEmpty) {
+                        if (player.inventory.mainStacks.isEmpty()) {
                             return@forEach
                         }
                         tryBreak(it)

@@ -20,7 +20,6 @@ import cn.enaium.onekeyminer.callback.UseOnBlockCallback
 import cn.enaium.onekeyminer.util.findBlocks
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
-import net.minecraft.item.MiningToolItem
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -38,9 +37,10 @@ abstract class UseOnBlockCallbackImpl : UseOnBlockCallback {
         hand: Hand,
         hitResult: BlockHitResult
     ) {
-        val canMine = stack.item.canMine(world.getBlockState(hitResult.blockPos), world, hitResult.blockPos, player)
+        val canMine =
+            stack.item.canMine(stack, world.getBlockState(hitResult.blockPos), world, hitResult.blockPos, player)
         val config = Config.model
-        if (canMine && config.interact && stack.item is MiningToolItem && condition(player)) {
+        if (canMine && config.interact && condition(player)) {
             for (block in findBlocks(world, hitResult.blockPos, config.limit)) {
                 stack.item.useOnBlock(
                     ItemUsageContext(

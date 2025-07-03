@@ -19,7 +19,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries
-import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
 /**

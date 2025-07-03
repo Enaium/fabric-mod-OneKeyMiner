@@ -16,7 +16,6 @@
 package cn.enaium.onekeyminer.screen
 
 import cn.enaium.onekeyminer.Config.save
-import cn.enaium.onekeyminer.util.getName
 import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext

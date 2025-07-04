@@ -1,3 +1,3 @@
-## 🛠️ Changes
+## 🐞 Bug fixes
 
-- Config file location changed to the config folder
+- Crash when open screen

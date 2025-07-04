@@ -27,7 +27,6 @@ import net.minecraft.text.Text
  */
 class ToolSelectScreen : Screen(Text.literal("")) {
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(context, mouseX, mouseY, delta)
         addDrawableChild(ButtonWidget.builder(Text.translatable("button.axe")) {
             MinecraftClient.getInstance().setScreen(
                 BlockListScreen(model.axe)

@@ -47,7 +47,7 @@ class BlockListWidget {
                     itemStack.name,
                     (x + entryWidth - textRenderer.getWidth(itemStack.name)),
                     (y + textRenderer.fontHeight),
-                    0xFFFFFF, false
+                    -1, false
                 )
             }
             context.drawText(
@@ -55,7 +55,7 @@ class BlockListWidget {
                 name,
                 (x + entryWidth - textRenderer.getWidth(name)),
                 y,
-                0xFFFFFF, false
+                -1, false
             )
             super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
         }

@@ -72,7 +72,6 @@ class BlockListAllScreen(private val parent: Screen, private val list: MutableLi
     }
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(context, mouseX, mouseY, delta)
         addButton!!.active = entryListWidget!!.selectedOrNull != null
         super.render(context, mouseX, mouseY, delta)
     }

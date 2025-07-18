@@ -1,4 +1,5 @@
 import me.modmuss50.mpp.ModPublishExtension
+import me.modmuss50.mpp.PublishModTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -164,6 +165,10 @@ subprojects {
                 accessToken = providers.gradleProperty("github.token")
                 commitish = "master"
             }
+        }
+
+        tasks.withType<PublishModTask>().configureEach {
+            dependsOn(tasks.named("remapJar"))
         }
     }
 }

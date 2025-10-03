@@ -28,11 +28,6 @@ class BlockListWidget {
     class Entry(val name: String) : ListWidget.Entry<Entry>() {
         override fun render(
             context: DrawContext,
-            index: Int,
-            y: Int,
-            x: Int,
-            entryWidth: Int,
-            entryHeight: Int,
             mouseX: Int,
             mouseY: Int,
             hovered: Boolean,
@@ -45,7 +40,7 @@ class BlockListWidget {
                 context.drawText(
                     textRenderer,
                     itemStack.name,
-                    (x + entryWidth - textRenderer.getWidth(itemStack.name)),
+                    (x + contentWidth - textRenderer.getWidth(itemStack.name)),
                     (y + textRenderer.fontHeight),
                     -1, false
                 )
@@ -53,11 +48,11 @@ class BlockListWidget {
             context.drawText(
                 textRenderer,
                 name,
-                (x + entryWidth - textRenderer.getWidth(name)),
+                (x + contentWidth - textRenderer.getWidth(name)),
                 y,
                 -1, false
             )
-            super.render(context, index, y, x, entryWidth, entryHeight, mouseX, mouseY, hovered, tickDelta)
+            super.render(context, mouseX, mouseY, hovered, tickDelta)
         }
     }
 }

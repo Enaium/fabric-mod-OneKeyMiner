@@ -30,6 +30,8 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.client.option.KeyBinding
 import net.minecraft.client.util.InputUtil
 import net.minecraft.command.CommandRegistryAccess
+import net.minecraft.command.permission.Permission
+import net.minecraft.command.permission.PermissionLevel
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
@@ -91,6 +93,5 @@ const val ID = "onekeyminer"
 
 val LOGGER: Logger = LoggerFactory.getLogger("OneKeyMiner")
 
-val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal(ID).requires { source ->
-    source.hasPermissionLevel(4)
-}
+val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal(ID)
+    .requires { source: ServerCommandSource -> source.permissions.hasPermission(Permission.Level(PermissionLevel.OWNERS)) }

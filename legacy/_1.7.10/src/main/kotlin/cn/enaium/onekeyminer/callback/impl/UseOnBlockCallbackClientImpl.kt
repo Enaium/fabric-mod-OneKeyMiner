@@ -16,6 +16,7 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Client.active
+import cn.enaium.onekeyminer.Config
 import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.player.PlayerEntity
 

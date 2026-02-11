@@ -15,6 +15,8 @@
   "command.action.notFound": "Block %s not found",
   "command.interact.get": "Interact is %s",
   "command.interact.success": "Set interact to %s",
+  "command.hotkey.get": "Hotkey is %s",
+  "command.hotkey.success": "Set hotkey to %s",
   "command.reload.success": "Reloaded config successfully",
   "key.onekeyminer.active": "Active",
   "category.onekeyminer.title": "OneKeyMiner"

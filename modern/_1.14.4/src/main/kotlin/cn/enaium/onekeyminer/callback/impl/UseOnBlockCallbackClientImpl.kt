@@ -16,6 +16,7 @@
 package cn.enaium.onekeyminer.callback.impl
 
 import cn.enaium.onekeyminer.Client.active
+import cn.enaium.onekeyminer.Config
 import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.player.PlayerEntity
 
@@ -24,6 +25,6 @@ import net.minecraft.entity.player.PlayerEntity
  */
 class UseOnBlockCallbackClientImpl : UseOnBlockCallbackImpl() {
     override fun condition(player: PlayerEntity): Boolean {
-        return if (MinecraftClient.getInstance().player == player && active != null) active!!.isPressed else player.isSneaking
+        return if (MinecraftClient.getInstance().player == player && active != null && Config.model.hotkey) active!!.isPressed else player.isSneaking
     }
 }

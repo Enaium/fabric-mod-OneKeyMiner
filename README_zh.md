@@ -51,7 +51,8 @@
 | `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> list`                 | 列出该工具类型的所有可挖掘方块      |                               |
 | `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> <ADD/REMOVE> <block>` | 向工具列表添加或移除方块         | 使用如 `minecraft:oak_log` 的方块ID |
 | `/onekeyminer interact`                                                 | 显示交互模式是否启用           | 默认：关闭                         |
-| `/onekeyminer interact <true/false>`                                    | 启用/禁用交互模式（如锄地、制作小路等） |                               |
+| `/onekeyminer interact <true/false>`                                    | 启用/禁用交互模式（如锄地、制作路径等） |                               |
+| `/onekeyminer hotkey <true/falst>`                                      | 启用/禁用热键 （仅单人模式）      | 默认: 打开                        |
 | `/onekeyminer reload`                                                   | 重新加载配置文件             |                               |
 
 **注意：** 设置过高的挖掘上限可能导致卡顿或崩溃。

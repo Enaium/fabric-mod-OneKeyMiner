@@ -49,6 +49,7 @@ fun initializer() {
     CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, registryAccess: CommandRegistryAccess, environment: CommandManager.RegistrationEnvironment ->
         actionCommand(dispatcher, registryAccess)
         interactCommand(dispatcher)
+        hotkeyCommand(dispatcher)
         limitCommand(dispatcher)
         listCommand(dispatcher)
         reloadCommand(dispatcher)

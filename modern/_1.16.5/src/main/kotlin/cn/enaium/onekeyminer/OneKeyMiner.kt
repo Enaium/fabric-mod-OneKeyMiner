@@ -41,6 +41,7 @@ fun initializer() {
     CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _: Boolean ->
         actionCommand(dispatcher)
         interactCommand(dispatcher)
+        hotkeyCommand(dispatcher)
         limitCommand(dispatcher)
         listCommand(dispatcher)
         reloadCommand(dispatcher)

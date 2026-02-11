@@ -15,6 +15,8 @@
   "command.action.notFound": "未找到方块 %s",
   "command.interact.get": "交互 %s",
   "command.interact.success": "交互设置为 %s",
+  "command.hotkey.get": "热键 %s",
+  "command.hotkey.success": "热键设置为 %s",
   "command.reload.success": "重载配置文件成功",
   "key.onekeyminer.active": "激活",
   "category.onekeyminer.title": "一键矿工"

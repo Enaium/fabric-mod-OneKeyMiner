@@ -54,6 +54,7 @@ object Config {
     class Model {
         var limit = 64
         var interact = false
+        var hotkey = true
         var axe: MutableList<String> = mutableListOf(
             "minecraft:oak_log",
             "minecraft:birch_log",

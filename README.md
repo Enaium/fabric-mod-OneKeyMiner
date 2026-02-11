@@ -54,6 +54,7 @@ rules.
 | `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> <ADD/REMOVE> <block>` | Adds or removes a block from the tool's list                         | Use block IDs like `minecraft:oak_log` |
 | `/onekeyminer interact`                                                 | Shows whether interaction mode is enabled                            | Default: false                         |
 | `/onekeyminer interact <true/false>`                                    | Enables/disables interaction mode (e.g., hoeing grass, making paths) |                                        |
+| `/onekeyminer hotkey <true/falst>`                                      | Enables/dissabes active key (Only Singleplayer)                      | Default: true                          |
 | `/onekeyminer reload`                                                   | Reloads the config file                                              |                                        |
 
 **Note:** Setting a very high limit may cause lag or crashes.

@@ -74,6 +74,16 @@ class OneKeyMinerCommand : AbstractCommand() {
             return
         }
 
+        if (args[0].equals("hotkey", ignoreCase = true)) {
+            if (args.size == 1) {
+                commandSource.sendMessage(TranslatableText("command.hotkey.get", Config.model.hotkey))
+            } else {
+                Config.model.hotkey = args[1].toBoolean()
+                commandSource.sendMessage(TranslatableText("command.hotkey.success", Config.model.hotkey))
+            }
+            return
+        }
+
         if (args.size <= 3) {
             val list = when (Tool.valueOf(args[0])) {
                 Tool.AXE -> Config.model.axe

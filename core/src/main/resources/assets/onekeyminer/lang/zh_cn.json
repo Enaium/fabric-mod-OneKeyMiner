@@ -19,5 +19,5 @@
   "command.hotkey.success": "热键设置为 %s",
   "command.reload.success": "重载配置文件成功",
   "key.onekeyminer.active": "激活",
-  "category.onekeyminer.title": "一键矿工"
+  "key.category.onekeyminer.title": "一键矿工"
 }

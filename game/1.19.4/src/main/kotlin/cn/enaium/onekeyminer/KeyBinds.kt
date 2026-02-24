@@ -29,7 +29,7 @@ object KeyBinds {
         "key.${ID}.active",
         InputUtil.Type.KEYSYM,
         GLFW.GLFW_KEY_GRAVE_ACCENT,
-        "category.${ID}.title"
+        "key.category.${ID}.title"
     )
 
     @JvmStatic

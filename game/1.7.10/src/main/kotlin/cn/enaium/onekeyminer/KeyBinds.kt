@@ -26,7 +26,7 @@ object KeyBinds {
     val activeKeyBind = KeyBinding(
         "key.${ID}.active",
         41,
-        "category.${ID}.title"
+        "key.category.${ID}.title"
     )
 
     @JvmStatic

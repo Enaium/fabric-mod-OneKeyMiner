@@ -7,7 +7,8 @@ plugins {
 
 afterEvaluate {
     publishMods {
-        file = tasks.named<AbstractArchiveTask>("remapJar").get().archiveFile.get()
+        val disableObfuscation = properties.getOrDefault("fabric.loom.disableObfuscation", false).toString().toBoolean()
+        file = tasks.named<AbstractArchiveTask>(if (disableObfuscation) "jar" else "remapJar").get().archiveFile.get()
         type = STABLE
         displayName = "OneKeyMiner ${project.version}"
         changelog = rootProject.file("changelog.md").readText(Charsets.UTF_8)
@@ -36,7 +37,7 @@ afterEvaluate {
         }
 
         tasks.withType<PublishModTask>().configureEach {
-            dependsOn(tasks.named("remapJar"))
+            dependsOn(tasks.named(if (disableObfuscation) "jar" else "remapJar"))
         }
     }
 }

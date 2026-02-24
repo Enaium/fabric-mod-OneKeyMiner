@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Enaium
+ * Copyright 2026 Enaium
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,15 @@
 package cn.enaium.onekeyminer
 
 import cn.enaium.onekeyminer.Config.model
-import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import net.minecraft.command.permission.Permission
-import net.minecraft.command.permission.PermissionLevel
-import net.minecraft.server.command.CommandManager.literal
-import net.minecraft.server.command.ServerCommandSource
-
+import net.minecraft.commands.Commands
 
 /**
  * @author Enaium
  */
 const val ID = "onekeyminer"
 
-val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal(ID)
-    .requires { source: ServerCommandSource -> source.permissions.hasPermission(Permission.Level(PermissionLevel.OWNERS)) }
+val ROOT = Commands.literal("onekeyminer")
+    .requires(Commands.hasPermission(Commands.LEVEL_OWNERS))
 
 fun initializer() {
     if (model.axe.isEmpty()) {

@@ -16,25 +16,25 @@
 
 package cn.enaium.onekeyminer
 
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
-import net.minecraft.client.option.KeyBinding
-import net.minecraft.client.util.InputUtil
-import net.minecraft.util.Identifier
+import com.mojang.blaze3d.platform.InputConstants
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
+import net.minecraft.client.KeyMapping
+import net.minecraft.resources.Identifier
 import org.lwjgl.glfw.GLFW
 
 /**
  * @author Enaium
  */
 object KeyBinds {
-    val activeKeyBind = KeyBinding(
+    val activeKeyBind = KeyMapping(
         "key.${ID}.active",
-        InputUtil.Type.KEYSYM,
+        InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_GRAVE_ACCENT,
-        KeyBinding.Category(Identifier.of(ID, "title")),
+        KeyMapping.Category(Identifier.fromNamespaceAndPath(ID, "title")),
     )
 
     @JvmStatic
     fun client() {
-        KeyBindingHelper.registerKeyBinding(activeKeyBind)
+        KeyMappingHelper.registerKeyMapping(activeKeyBind)
     }
 }

@@ -19,5 +19,5 @@
   "command.hotkey.success": "設定熱鍵為 %s",
   "command.reload.success": "設定檔重新載入成功",
   "key.onekeyminer.active": "啟用",
-  "category.onekeyminer.title": "一鍵礦工"
+  "key.category.onekeyminer.title": "一鍵礦工"
 }

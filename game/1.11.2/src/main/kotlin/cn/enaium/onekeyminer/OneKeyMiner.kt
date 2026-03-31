@@ -16,7 +16,7 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.Config.model
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 
 /**
  * @author Enaium
@@ -24,51 +24,60 @@ import cn.enaium.onekeyminer.Config.model
 const val ID = "onekeyminer"
 
 fun initializer() {
-    if (model.axe.isEmpty()) {
-        model.axe = mutableListOf(
-            "minecraft:log",
-            "minecraft:log2",
-            "minecraft:leaves",
-            "minecraft:leaves2"
+    if (OneKeyMinerConfig.axe.value.isEmpty()) {
+        OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:log",
+                "minecraft:log2",
+                "minecraft:leaves",
+                "minecraft:leaves2"
+            )
         )
     }
 
-    if (model.hoe.isEmpty()) {
-        model.hoe = mutableListOf(
-            "minecraft:sponge",
-            "minecraft:hay_block",
-            "minecraft:nether_wart_block",
-            "minecraft:leaves",
-            "minecraft:leaves2"
+    if (OneKeyMinerConfig.hoe.value.isEmpty()) {
+        OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:sponge",
+                "minecraft:hay_block",
+                "minecraft:nether_wart_block",
+                "minecraft:leaves",
+                "minecraft:leaves2"
+            )
         )
     }
 
-    if (model.pickaxe.isEmpty()) {
-
-        model.pickaxe = mutableListOf(
-            "minecraft:gold_ore",
-            "minecraft:iron_ore",
-            "minecraft:coal_ore",
-            "minecraft:lapis_ore",
-            "minecraft:diamond_ore",
-            "minecraft:redstone_ore",
-            "minecraft:emerald_ore"
+    if (OneKeyMinerConfig.pickaxe.value.isEmpty()) {
+        OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:gold_ore",
+                "minecraft:iron_ore",
+                "minecraft:coal_ore",
+                "minecraft:lapis_ore",
+                "minecraft:diamond_ore",
+                "minecraft:redstone_ore",
+                "minecraft:emerald_ore"
+            )
         )
     }
 
-    if (model.shovel.isEmpty()) {
-        model.shovel = mutableListOf(
-            "minecraft:sand",
-            "minecraft:snow",
-            "minecraft:clay",
-            "minecraft:soul_sand"
+    if (OneKeyMinerConfig.shovel.value.isEmpty()) {
+        OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(
+            defaultValue = mutableListOf(
+                "minecraft:sand",
+                "minecraft:snow",
+                "minecraft:clay",
+                "minecraft:soul_sand"
+            )
         )
     }
 
-    if (model.shears.isEmpty()) {
-        model.shears = mutableListOf(
-            "minecraft:leaves",
-            "minecraft:leaves2"
+    if (OneKeyMinerConfig.shears.value.isEmpty()) {
+        OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(
+            defaultValue = mutableListOf(
+                "minecraft:leaves",
+                "minecraft:leaves2"
+            )
         )
     }
 }

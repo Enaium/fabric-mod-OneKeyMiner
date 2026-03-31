@@ -17,6 +17,7 @@
 package cn.enaium.onekeyminer.mixin;
 
 import cn.enaium.onekeyminer.event.ServerPlayerCallbacks;
+import kotlin.Unit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,7 +66,7 @@ public abstract class ServerPlayerGameModeMixin {
     public void interactBlock(ServerPlayer player, Level level, ItemStack itemStack, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
         ServerPlayerCallbacks.UseOnBlockCallback.Companion.getEVENT().getInvoker().interact(toCommon(player, level), toCommon(hitResult.getBlockPos(), level), (blockPos -> {
             itemStack.getItem().useOn(new UseOnContext(player, hand, new BlockHitResult(new Vec3(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5), hitResult.getDirection(), new BlockPos(blockPos.getX(), blockPos.getY(), blockPos.getZ()), false)));
-            return null;
+            return Unit.INSTANCE;
         }));
     }
 }

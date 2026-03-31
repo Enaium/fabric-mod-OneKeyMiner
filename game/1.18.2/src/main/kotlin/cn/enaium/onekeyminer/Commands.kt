@@ -16,10 +16,9 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.command.*
-import com.mojang.brigadier.CommandDispatcher
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
-import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.util.registry.Registry
 
 /**
  * @author Enaium
@@ -27,20 +26,14 @@ import net.minecraft.server.command.ServerCommandSource
 object Commands {
     @JvmStatic
     fun initializer() {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _: Boolean ->
-            actionCommand(dispatcher)
-            interactCommand(dispatcher)
-            limitCommand(dispatcher)
-            listCommand(dispatcher)
-            reloadCommand(dispatcher)
-        })
-    }
-
-    @JvmStatic
-    fun client() {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _: Boolean ->
-            screenCommand(dispatcher)
-            hotkeyCommand(dispatcher)
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { _, _ ->
+            val map = Registry.ENCHANTMENT.ids.map { it.toString() }.toList()
+            OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(options = map)
+            OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(options = map)
+            OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(options = map)
+            OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(options = map)
+            OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(options = map)
+            OneKeyMinerConfig.any = OneKeyMinerConfig.any.copy(options = map)
         })
     }
 }

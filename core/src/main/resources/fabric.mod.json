@@ -23,7 +23,6 @@
     ],
     "client": [
       "cn.enaium.onekeyminer.OneKeyMiner::client",
-      "cn.enaium.onekeyminer.Commands::client",
       "cn.enaium.onekeyminer.KeyBinds::client"
     ],
     "server": [

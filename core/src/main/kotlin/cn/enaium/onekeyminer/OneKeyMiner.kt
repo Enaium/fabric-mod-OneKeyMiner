@@ -16,9 +16,11 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.event.ServerCommandCallbacks
 import cn.enaium.onekeyminer.event.ServerPlayerCallbacks
-import cn.enaium.onekeyminer.event.impl.*
+import cn.enaium.onekeyminer.event.impl.FinishMiningCallbackClientImpl
+import cn.enaium.onekeyminer.event.impl.FinishMiningCallbackServerImpl
+import cn.enaium.onekeyminer.event.impl.UseOnBlockCallbackClientImpl
+import cn.enaium.onekeyminer.event.impl.UseOnBlockCallbackServerImpl
 
 /**
  * @author Enaium
@@ -26,18 +28,10 @@ import cn.enaium.onekeyminer.event.impl.*
 object OneKeyMiner {
     @JvmStatic
     fun initializer() {
-        ServerCommandCallbacks.ReloadCallback.EVENT.register(ReloadCallbackImpl())
-        ServerCommandCallbacks.LimitCallback.EVENT.register(LimitCallbackImpl())
-        ServerCommandCallbacks.InteractCallback.EVENT.register(InteractCallbackImpl())
-        ServerCommandCallbacks.ActionCallback.EVENT.register(ActionCallbackImpl())
-
-        Config.load()
-        Runtime.getRuntime().addShutdownHook(Thread(Config::save))
     }
 
     @JvmStatic
     fun client() {
-        ServerCommandCallbacks.HotkeyCallback.EVENT.register(HotkeyCallbackImpl())
         ServerPlayerCallbacks.FinishMiningCallback.EVENT.register(FinishMiningCallbackClientImpl())
         ServerPlayerCallbacks.UseOnBlockCallback.EVENT.register(UseOnBlockCallbackClientImpl())
     }

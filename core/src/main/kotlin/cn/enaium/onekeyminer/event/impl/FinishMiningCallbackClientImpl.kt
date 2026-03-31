@@ -16,14 +16,14 @@
 
 package cn.enaium.onekeyminer.event.impl
 
-import cn.enaium.onekeyminer.Config.model
 import cn.enaium.onekeyminer.common.Player
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 
 /**
  * @author Enaium
  */
 class FinishMiningCallbackClientImpl : FinishMiningCallbackImpl() {
     override fun condition(player: Player): Boolean {
-        return if (model.hotkey) player.activating else player.sneaking
+        return if (OneKeyMinerConfig.hotkey.value) player.activating else player.sneaking
     }
 }

@@ -41,45 +41,15 @@
 
 ## 使用方法
 
-### 指令
-
-| 指令                                                                      | 说明                   | 备注                            |
-|-------------------------------------------------------------------------|----------------------|-------------------------------|
-| `/onekeyminer screen`                                                   | 打开模组配置界面             | 仅限单人/局域网                      |
-| `/onekeyminer limit`                                                    | 显示当前挖掘上限             | 默认：64                         |
-| `/onekeyminer limit <number>`                                           | 设置每次操作的最大挖掘方块数       |                               |
-| `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> list`                 | 列出该工具类型的所有可挖掘方块      |                               |
-| `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> <ADD/REMOVE> <block>` | 向工具列表添加或移除方块         | 使用如 `minecraft:oak_log` 的方块ID |
-| `/onekeyminer interact`                                                 | 显示交互模式是否启用           | 默认：关闭                         |
-| `/onekeyminer interact <true/false>`                                    | 启用/禁用交互模式（如锄地、制作路径等） |                               |
-| `/onekeyminer hotkey <true/falst>`                                      | 启用/禁用热键 （仅单人模式）      | 默认: 打开                        |
-| `/onekeyminer reload`                                                   | 重新加载配置文件             |                               |
-
-**注意：** 设置过高的挖掘上限可能导致卡顿或崩溃。
-
 ### 按键绑定
 
 - 可通过自定义按键激活模组（游戏内可配置，仅限单人）。
 
 ---
 
-## 旧版本说明
+## 配置
 
-| 版本      | 指令差异                                          | 方块ID格式                    |
-|---------|-----------------------------------------------|---------------------------|
-| 1.8+    | `/onekeyminer screen`                         | 细分（如 `minecraft:oak_log`） |
-| 1.7 及以下 | 无配置界面指令                                       | 整体（如 `minecraft:log`）     |
-| 所有旧版本   | `/onekeyminer screen` 为 `/onekeyminer-screen` |                           |
-
----
-
-## 配置与自定义
-
-- 编辑配置文件或使用游戏内界面（如可用）可：
-    - 修改挖掘上限
-    - 调整各工具的方块列表
-    - 切换交互模式
-    - 设置自定义按键（仅限单人）
+模组使用MineConf进行配置.
 
 ---
 

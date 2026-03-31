@@ -16,9 +16,8 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.command.OneKeyMinerCommand
-import cn.enaium.onekeyminer.command.ScreenCommand
-import net.legacyfabric.fabric.api.registry.CommandRegistry
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
+import net.minecraft.enchantment.Enchantment
 
 /**
  * @author Enaium
@@ -26,11 +25,12 @@ import net.legacyfabric.fabric.api.registry.CommandRegistry
 object Commands {
     @JvmStatic
     fun initializer() {
-        CommandRegistry.INSTANCE.register(OneKeyMinerCommand())
-    }
-
-    @JvmStatic
-    fun client() {
-        CommandRegistry.INSTANCE.register(ScreenCommand())
+        val map = Enchantment.getSet().map { it.toString() }
+        OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(options = map)
+        OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(options = map)
+        OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(options = map)
+        OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(options = map)
+        OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(options = map)
+        OneKeyMinerConfig.any = OneKeyMinerConfig.any.copy(options = map)
     }
 }

@@ -16,89 +16,91 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.Config.model
-import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import net.minecraft.server.command.CommandManager.literal
-import net.minecraft.server.command.ServerCommandSource
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 
 /**
  * @author Enaium
  */
 const val ID = "onekeyminer"
 
-val ROOT: LiteralArgumentBuilder<ServerCommandSource> = literal(ID).requires { source ->
-    source.hasPermissionLevel(4)
-}
-
 fun initializer() {
-    if (model.axe.isEmpty()) {
-        model.axe = mutableListOf(
-            "minecraft:oak_log",
-            "minecraft:birch_log",
-            "minecraft:spruce_log",
-            "minecraft:jungle_log",
-            "minecraft:dark_oak_log",
-            "minecraft:acacia_log",
-            "minecraft:oak_leaves",
-            "minecraft:spruce_leaves",
-            "minecraft:birch_leaves",
-            "minecraft:jungle_leaves",
-            "minecraft:acacia_leaves",
-            "minecraft:dark_oak_leaves"
+    if (OneKeyMinerConfig.axe.value.isEmpty()) {
+        OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:oak_log",
+                "minecraft:birch_log",
+                "minecraft:spruce_log",
+                "minecraft:jungle_log",
+                "minecraft:dark_oak_log",
+                "minecraft:acacia_log",
+                "minecraft:oak_leaves",
+                "minecraft:spruce_leaves",
+                "minecraft:birch_leaves",
+                "minecraft:jungle_leaves",
+                "minecraft:acacia_leaves",
+                "minecraft:dark_oak_leaves"
+            )
         )
     }
 
-    if (model.hoe.isEmpty()) {
-        model.hoe = mutableListOf(
-            "minecraft:oak_leaves",
-            "minecraft:spruce_leaves",
-            "minecraft:birch_leaves",
-            "minecraft:jungle_leaves",
-            "minecraft:acacia_leaves",
-            "minecraft:dark_oak_leaves",
-            "minecraft:sponge",
-            "minecraft:wet_sponge",
-            "minecraft:hay_block",
-            "minecraft:nether_wart_block",
-            "minecraft:dried_kelp_block",
-            "minecraft:warped_wart_block",
+    if (OneKeyMinerConfig.hoe.value.isEmpty()) {
+        OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:oak_leaves",
+                "minecraft:spruce_leaves",
+                "minecraft:birch_leaves",
+                "minecraft:jungle_leaves",
+                "minecraft:acacia_leaves",
+                "minecraft:dark_oak_leaves",
+                "minecraft:sponge",
+                "minecraft:wet_sponge",
+                "minecraft:hay_block",
+                "minecraft:nether_wart_block",
+                "minecraft:dried_kelp_block",
+                "minecraft:warped_wart_block",
+            )
         )
     }
 
-    if (model.pickaxe.isEmpty()) {
-
-        model.pickaxe = mutableListOf(
-            "minecraft:gold_ore",
-            "minecraft:iron_ore",
-            "minecraft:coal_ore",
-            "minecraft:nether_gold_ore",
-            "minecraft:lapis_ore",
-            "minecraft:diamond_ore",
-            "minecraft:redstone_ore",
-            "minecraft:emerald_ore",
-            "minecraft:nether_quartz_ore"
+    if (OneKeyMinerConfig.pickaxe.value.isEmpty()) {
+        OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
+            defaultValue = mutableListOf(
+                "minecraft:gold_ore",
+                "minecraft:iron_ore",
+                "minecraft:coal_ore",
+                "minecraft:nether_gold_ore",
+                "minecraft:lapis_ore",
+                "minecraft:diamond_ore",
+                "minecraft:redstone_ore",
+                "minecraft:emerald_ore",
+                "minecraft:nether_quartz_ore"
+            )
         )
     }
 
-    if (model.shovel.isEmpty()) {
-        model.shovel = mutableListOf(
-            "minecraft:sand",
-            "minecraft:red_sand",
-            "minecraft:snow",
-            "minecraft:snow_block",
-            "minecraft:clay",
-            "minecraft:soul_sand"
+    if (OneKeyMinerConfig.shovel.value.isEmpty()) {
+        OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(
+            defaultValue = mutableListOf(
+                "minecraft:sand",
+                "minecraft:red_sand",
+                "minecraft:snow",
+                "minecraft:snow_block",
+                "minecraft:clay",
+                "minecraft:soul_sand"
+            )
         )
     }
 
-    if (model.shears.isEmpty()) {
-        model.shears = mutableListOf(
-            "minecraft:oak_leaves",
-            "minecraft:spruce_leaves",
-            "minecraft:birch_leaves",
-            "minecraft:jungle_leaves",
-            "minecraft:acacia_leaves",
-            "minecraft:dark_oak_leaves"
+    if (OneKeyMinerConfig.shears.value.isEmpty()) {
+        OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(
+            defaultValue = mutableListOf(
+                "minecraft:oak_leaves",
+                "minecraft:spruce_leaves",
+                "minecraft:birch_leaves",
+                "minecraft:jungle_leaves",
+                "minecraft:acacia_leaves",
+                "minecraft:dark_oak_leaves"
+            )
         )
     }
 }

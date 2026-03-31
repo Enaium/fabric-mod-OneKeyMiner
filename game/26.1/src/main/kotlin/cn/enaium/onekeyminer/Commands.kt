@@ -16,12 +16,11 @@
 
 package cn.enaium.onekeyminer
 
-import cn.enaium.onekeyminer.command.*
-import com.mojang.brigadier.CommandDispatcher
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.commands.CommandBuildContext
-import net.minecraft.commands.CommandSourceStack
-import net.minecraft.commands.Commands
+import net.minecraft.core.registries.Registries
+import kotlin.jvm.optionals.getOrNull
 
 /**
  * @author Enaium
@@ -29,20 +28,16 @@ import net.minecraft.commands.Commands
 object Commands {
     @JvmStatic
     fun initializer() {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<CommandSourceStack>, buildContext: CommandBuildContext, selection: Commands.CommandSelection ->
-            actionCommand(dispatcher, buildContext)
-            interactCommand(dispatcher)
-            limitCommand(dispatcher)
-            listCommand(dispatcher)
-            reloadCommand(dispatcher)
-        })
-    }
-
-    @JvmStatic
-    fun client() {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<CommandSourceStack>, buildContext: CommandBuildContext, selection: Commands.CommandSelection ->
-            screenCommand(dispatcher)
-            hotkeyCommand(dispatcher)
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { _, buildContext: CommandBuildContext, _ ->
+            val map = buildContext.lookup(Registries.BLOCK)
+                .map { it -> it.listElementIds().map { it.identifier().toString() } }.getOrNull()?.toList()
+                ?: emptyList()
+            OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(options = map)
+            OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(options = map)
+            OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(options = map)
+            OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(options = map)
+            OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(options = map)
+            OneKeyMinerConfig.any = OneKeyMinerConfig.any.copy(options = map)
         })
     }
 }

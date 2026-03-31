@@ -16,10 +16,10 @@
 
 package cn.enaium.onekeyminer.event.impl
 
-import cn.enaium.onekeyminer.Config.model
 import cn.enaium.onekeyminer.common.BlockPos
 import cn.enaium.onekeyminer.common.Player
 import cn.enaium.onekeyminer.common.Tool
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 import cn.enaium.onekeyminer.event.ServerPlayerCallbacks
 import cn.enaium.onekeyminer.utility.findBlock
 
@@ -33,27 +33,27 @@ abstract class FinishMiningCallbackImpl : ServerPlayerCallbacks.FinishMiningCall
 
         when (player.handTool) {
             Tool.AXE -> {
-                list.addAll(model.axe)
+                list.addAll(OneKeyMinerConfig.axe.value)
             }
 
             Tool.HOE -> {
-                list.addAll(model.hoe)
+                list.addAll(OneKeyMinerConfig.hoe.value)
             }
 
             Tool.PICKAXE -> {
-                list.addAll(model.pickaxe)
+                list.addAll(OneKeyMinerConfig.pickaxe.value)
             }
 
             Tool.SHOVEL -> {
-                list.addAll(model.shovel)
+                list.addAll(OneKeyMinerConfig.shovel.value)
             }
 
             Tool.SHEARS -> {
-                list.addAll(model.shears)
+                list.addAll(OneKeyMinerConfig.shears.value)
             }
 
             Tool.ANY -> {
-                list.addAll(model.any)
+                list.addAll(OneKeyMinerConfig.any.value)
             }
         }
 

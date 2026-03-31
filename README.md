@@ -43,45 +43,15 @@ rules.
 
 ## Usage
 
-### Commands
-
-| Command                                                                 | Description                                                          | Notes                                  |
-|-------------------------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------|
-| `/onekeyminer screen`                                                   | Opens the mod's configuration screen                                 | Singleplayer/LAN only                  |
-| `/onekeyminer limit`                                                    | Shows the current mining limit                                       | Default: 64                            |
-| `/onekeyminer limit <number>`                                           | Sets the max number of blocks mined per action                       |                                        |
-| `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> list`                 | Lists all blocks in the tool's mining list                           |                                        |
-| `/onekeyminer <AXE/HOE/PICKAXE/SHOVEL/SHEARS/ANY> <ADD/REMOVE> <block>` | Adds or removes a block from the tool's list                         | Use block IDs like `minecraft:oak_log` |
-| `/onekeyminer interact`                                                 | Shows whether interaction mode is enabled                            | Default: false                         |
-| `/onekeyminer interact <true/false>`                                    | Enables/disables interaction mode (e.g., hoeing grass, making paths) |                                        |
-| `/onekeyminer hotkey <true/falst>`                                      | Enables/dissabes active key (Only Singleplayer)                      | Default: true                          |
-| `/onekeyminer reload`                                                   | Reloads the config file                                              |                                        |
-
-**Note:** Setting a very high limit may cause lag or crashes.
-
 ### Keybind
 
 - The mod can be activated with a custom key (configurable in-game, singleplayer only).
 
 ---
 
-## Legacy Version Notes
+## Configuration
 
-| Version       | Command Differences                            | Block ID Format                        |
-|---------------|------------------------------------------------|----------------------------------------|
-| 1.8+          | `/onekeyminer screen`                          | Subdivided (e.g., `minecraft:oak_log`) |
-| 1.7 and below | No config screen command                       | Whole (e.g., `minecraft:log`)          |
-| Legacy (all)  | `/onekeyminer screen` is `/onekeyminer-screen` |                                        |
-
----
-
-## Configuration & Customization
-
-- Edit the config file or use the in-game screen (where available) to:
-    - Change mining limits
-    - Adjust block lists per tool
-    - Toggle interaction mode
-    - Set custom keybinds (singleplayer)
+This mod uses the MineConf for configuration.
 
 ---
 

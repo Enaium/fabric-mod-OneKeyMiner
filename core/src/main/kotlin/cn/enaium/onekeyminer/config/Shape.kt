@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package cn.enaium.onekeyminer.event.impl
-
-import cn.enaium.onekeyminer.common.Player
-import cn.enaium.onekeyminer.config.OneKeyMinerConfig
+package cn.enaium.onekeyminer.config
 
 /**
  * @author Enaium
  */
-class UseOnBlockCallbackClientImpl : UseOnBlockCallbackImpl() {
-    override fun condition(player: Player): Boolean {
-        return if (OneKeyMinerConfig.hotkey.value && player.host) player.activating else player.sneaking
-    }
+enum class Shape {
+    CUBE,
+    HORIZONTAL_PLANE,
+    VERTICAL_PLANE,
+    COLUMN,
+    SPHERE,
+    TUNNEL,
+    PYRAMID,
+    DIAMOND,
+    CONE
 }

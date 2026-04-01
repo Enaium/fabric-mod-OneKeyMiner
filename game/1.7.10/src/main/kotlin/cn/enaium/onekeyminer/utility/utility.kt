@@ -18,11 +18,15 @@ package cn.enaium.onekeyminer.utility
 import cn.enaium.onekeyminer.KeyBinds.activeKeyBind
 import cn.enaium.onekeyminer.common.Player
 import cn.enaium.onekeyminer.common.Tool
+import cn.enaium.onekeyminer.common.Direction
 import net.minecraft.block.Block
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.player.ServerPlayerEntity
 import net.minecraft.item.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import kotlin.math.abs
+import kotlin.math.floor
 
 /**
  * @author Enaium
@@ -44,6 +48,8 @@ fun BlockPos.toCommon(world: World): cn.enaium.onekeyminer.common.BlockPos {
 
 fun PlayerEntity.toCommon(world: World): Player {
     return object : Player {
+        override val host: Boolean
+            get() = if (this@toCommon is ServerPlayerEntity) this@toCommon.ping == 0 else false
         override val sneaking: Boolean
             get() = this@toCommon.isSneaking
 
@@ -85,5 +91,13 @@ fun PlayerEntity.toCommon(world: World): Player {
 
         override val mainHandEmpty: Boolean
             get() = this@toCommon.inventory.mainHandStack == null
+
+        override val direction: Direction
+            get() = arrayOf(
+                Direction.SOUTH,
+                Direction.WEST,
+                Direction.NORTH,
+                Direction.EAST
+            )[abs((floor((this@toCommon.yaw * 4.0F / 360.0F) + 0.5F).toInt() and 3) % 4)]
     }
 }

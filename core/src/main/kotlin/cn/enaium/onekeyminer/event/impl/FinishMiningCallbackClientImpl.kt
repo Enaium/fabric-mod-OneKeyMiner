@@ -24,6 +24,6 @@ import cn.enaium.onekeyminer.config.OneKeyMinerConfig
  */
 class FinishMiningCallbackClientImpl : FinishMiningCallbackImpl() {
     override fun condition(player: Player): Boolean {
-        return if (OneKeyMinerConfig.hotkey.value) player.activating else player.sneaking
+        return if (OneKeyMinerConfig.hotkey.value && player.host) player.activating else player.sneaking
     }
 }

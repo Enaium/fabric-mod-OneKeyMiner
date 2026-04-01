@@ -20,6 +20,7 @@ package cn.enaium.onekeyminer.common
  * @author Enaium
  */
 interface Player {
+    val host: Boolean
     val sneaking: Boolean
     val activating: Boolean
     val handTool: Tool
@@ -27,5 +28,5 @@ interface Player {
 
     val mainHandEmpty: Boolean
 
-
+    val direction: Direction
 }

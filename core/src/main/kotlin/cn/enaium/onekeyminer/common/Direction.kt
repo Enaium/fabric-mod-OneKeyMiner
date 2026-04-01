@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Enaium
+ * Copyright 2026 Enaium
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package cn.enaium.onekeyminer.common
 
 /**
  * @author Enaium
  */
-enum class Action {
-    ADD,
-    REMOVE
+enum class Direction {
+    DOWN,
+    UP,
+    NORTH,
+    SOUTH,
+    WEST,
+    EAST
 }

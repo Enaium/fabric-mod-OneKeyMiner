@@ -66,4 +66,10 @@ object OneKeyMinerConfig {
         .create().id("any").name("Any")
         .description("Blocks to mine with any tool")
         .collection<String>().build(mutableListOf())
+
+    var shape = ConfBuilder
+        .create().id("shape").name("Shape")
+        .description("Chain shape of the mine")
+        .enumeration<Shape>().type(Shape::class.java).build(Shape.CUBE)
+
 }

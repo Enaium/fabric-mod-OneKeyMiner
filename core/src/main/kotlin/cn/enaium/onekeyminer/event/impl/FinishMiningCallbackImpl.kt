@@ -58,7 +58,7 @@ abstract class FinishMiningCallbackImpl : ServerPlayerCallbacks.FinishMiningCall
         }
 
         if (pos.name in list) {
-            pos.findBlock(64).forEach { block ->
+            pos.findBlock(player).forEach { block ->
                 player.mainHandEmpty && return
                 tryBreak(block)
             }

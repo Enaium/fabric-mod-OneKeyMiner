@@ -18,6 +18,7 @@ package cn.enaium.onekeyminer.event.impl
 
 import cn.enaium.onekeyminer.common.BlockPos
 import cn.enaium.onekeyminer.common.Player
+import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 import cn.enaium.onekeyminer.event.ServerPlayerCallbacks
 import cn.enaium.onekeyminer.utility.findBlock
 
@@ -27,7 +28,7 @@ import cn.enaium.onekeyminer.utility.findBlock
 abstract class UseOnBlockCallbackImpl : ServerPlayerCallbacks.UseOnBlockCallback {
     override fun interact(player: Player, pos: BlockPos, useOnBlock: (BlockPos) -> Unit) {
         if (!player.canMine(pos) || !condition(player)) return
-        pos.findBlock(64).forEach { block ->
+        pos.findBlock(player).forEach { block ->
             player.mainHandEmpty && return
             useOnBlock(block)
         }

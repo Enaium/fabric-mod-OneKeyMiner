@@ -18,6 +18,7 @@ package cn.enaium.onekeyminer.utility
 import cn.enaium.onekeyminer.KeyBinds.activeKeyBind
 import cn.enaium.onekeyminer.common.Player
 import cn.enaium.onekeyminer.common.Tool
+import cn.enaium.onekeyminer.common.Direction
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.server.level.ServerPlayer
@@ -45,6 +46,8 @@ fun BlockPos.toCommon(level: Level): cn.enaium.onekeyminer.common.BlockPos {
 
 fun ServerPlayer.toCommon(world: Level): Player {
     return object : Player {
+        override val host: Boolean
+            get() = this@toCommon.isLocalPlayer
         override val sneaking: Boolean
             get() = this@toCommon.isShiftKeyDown
 
@@ -83,5 +86,8 @@ fun ServerPlayer.toCommon(world: Level): Player {
 
         override val mainHandEmpty: Boolean
             get() = this@toCommon.inventory.selectedItem.isEmpty
+
+        override val direction: Direction
+            get() = Direction.valueOf(this@toCommon.direction.name)
     }
 }

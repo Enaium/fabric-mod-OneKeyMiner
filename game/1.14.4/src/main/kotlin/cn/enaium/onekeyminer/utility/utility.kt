@@ -18,6 +18,7 @@ package cn.enaium.onekeyminer.utility
 import cn.enaium.onekeyminer.KeyBinds.activeKeyBind
 import cn.enaium.onekeyminer.common.Player
 import cn.enaium.onekeyminer.common.Tool
+import cn.enaium.onekeyminer.common.Direction
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
 import net.minecraft.util.Identifier
@@ -48,6 +49,8 @@ fun BlockPos.toCommon(world: World): cn.enaium.onekeyminer.common.BlockPos {
 
 fun PlayerEntity.toCommon(world: World): Player {
     return object : Player {
+        override val host: Boolean
+            get() = this@toCommon.isMainPlayer
         override val sneaking: Boolean
             get() = this@toCommon.isSneaking
 
@@ -95,5 +98,8 @@ fun PlayerEntity.toCommon(world: World): Player {
 
         override val mainHandEmpty: Boolean
             get() = this@toCommon.inventory.mainHandStack.isEmpty
+
+        override val direction: Direction
+            get() = Direction.valueOf(this@toCommon.horizontalFacing.name)
     }
 }

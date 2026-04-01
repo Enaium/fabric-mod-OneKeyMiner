@@ -22,9 +22,7 @@ rules.
 - Configurable block lists for each tool type (axe, hoe, pickaxe, shovel, shears, or any)
 - Adjustable mining limit to prevent excessive block breaking
 - Toggleable interaction mode for blocks that can be interacted with (e.g., grass, farmland)
-- In-game configuration screen (singleplayer/LAN only)
 - Customizable keybind for activation (singleplayer only)
-- Reloadable config without restarting the game
 - Legacy version support (1.7.10+)
 
 ---
@@ -52,6 +50,16 @@ rules.
 ## Configuration
 
 This mod uses the MineConf for configuration.
+
+### Configs
+
+| Config                           | Description                                                                     | Notes          |
+|----------------------------------|---------------------------------------------------------------------------------|----------------|
+| limit                            | The max number of blocks mined per action                                       | Default: 64    |
+| axe/hop/pickaxe/shovel/shers/any | All blocks in the tool's mining list                                            |                |
+| interact                         | Interaction mode (e.g., hoeing grass, making paths)                             | Default: false |
+| hotkey                           | Active key (Only Singleplayer)                                                  | Default: true  |
+| shape                            | Chain shape of the mine (e.g., HORIZONTAL/VERTICAL_PLANE, COLUMN,SPHERE,TUNNEL) | Default: CUBE  |
 
 ---
 

@@ -20,14 +20,14 @@ afterEvaluate {
             projectId = "626666"
             accessToken = providers.gradleProperty("curseforge.token")
             minecraftVersions.add(property("minecraft.version").toString())
-            requires("fabric-language-kotlin", if (modern) "fabric-api" else "legacy-fabric-api")
+            requires("fabric-language-kotlin", "mineconf", if (modern) "fabric-api" else "legacy-fabric-api")
         }
 
         modrinth {
             projectId = "MxjO3Kkh"
             accessToken = providers.gradleProperty("modrinth.token")
             minecraftVersions.add(property("minecraft.version").toString())
-            requires("fabric-language-kotlin", if (modern) "fabric-api" else "legacy-fabric-api")
+            requires("fabric-language-kotlin", "mineconf", if (modern) "fabric-api" else "legacy-fabric-api")
         }
 
         github {

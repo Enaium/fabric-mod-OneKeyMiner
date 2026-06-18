@@ -19,6 +19,7 @@ import cn.enaium.onekeyminer.KeyBinds.activeKeyBind
 import cn.enaium.onekeyminer.common.Player
 import cn.enaium.onekeyminer.common.Tool
 import cn.enaium.onekeyminer.common.Direction
+import net.minecraft.client.MinecraftClient
 import net.minecraft.item.*
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
@@ -50,7 +51,7 @@ fun BlockPos.toCommon(world: World): cn.enaium.onekeyminer.common.BlockPos {
 fun ServerPlayerEntity.toCommon(world: World): Player {
     return object : Player {
         override val host: Boolean
-            get() = this@toCommon.isMainPlayer
+            get() = this@toCommon.uuid.equals(MinecraftClient.getInstance().session.uuid)
         override val sneaking: Boolean
             get() = this@toCommon.isSneaking
 

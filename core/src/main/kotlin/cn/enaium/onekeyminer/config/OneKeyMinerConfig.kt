@@ -37,39 +37,38 @@ object OneKeyMinerConfig {
         .description("Enables/dissabes active key to trigger the miner")
         .literal<Boolean>().build(true)
 
-    var axe = ConfBuilder
-        .create().id("axe").name("Axe")
-        .description("Blocks to mine with the axe")
-        .collection<String>().build(mutableListOf())
-
-    var hoe = ConfBuilder
-        .create().id("hoe").name("Hoe")
-        .description("Blocks to mine with the hoe")
-        .collection<String>().build(mutableListOf())
-
-    var pickaxe = ConfBuilder
-        .create().id("pickaxe").name("Pickaxe")
-        .description("Blocks to mine with the pickaxe")
-        .collection<String>().build(mutableListOf())
-
-    var shovel = ConfBuilder
-        .create().id("shovel").name("Shovel")
-        .description("Blocks to mine with the shovel")
-        .collection<String>().build(mutableListOf())
-
-    var shears = ConfBuilder
-        .create().id("shears").name("Shears")
-        .description("Blocks to mine with the shears")
-        .collection<String>().build(mutableListOf())
-
-    var any = ConfBuilder
-        .create().id("any").name("Any")
-        .description("Blocks to mine with any tool")
-        .collection<String>().build(mutableListOf())
-
     var shape = ConfBuilder
         .create().id("shape").name("Shape")
         .description("Chain shape of the mine")
         .enumeration<Shape>().type(Shape::class.java).build(Shape.CUBE)
 
+    var axe = ConfBuilder
+        .create().id("axe").name("Axe")
+        .description("Blocks to mine with the axe")
+        .collection<String>().separator(':').build(mutableListOf())
+
+    var hoe = ConfBuilder
+        .create().id("hoe").name("Hoe")
+        .description("Blocks to mine with the hoe")
+        .collection<String>().separator(':').build(mutableListOf())
+
+    var pickaxe = ConfBuilder
+        .create().id("pickaxe").name("Pickaxe")
+        .description("Blocks to mine with the pickaxe")
+        .collection<String>().separator(':').build(mutableListOf())
+
+    var shovel = ConfBuilder
+        .create().id("shovel").name("Shovel")
+        .description("Blocks to mine with the shovel")
+        .collection<String>().separator(':').build(mutableListOf())
+
+    var shears = ConfBuilder
+        .create().id("shears").name("Shears")
+        .description("Blocks to mine with the shears")
+        .collection<String>().separator(':').build(mutableListOf())
+
+    var any = ConfBuilder
+        .create().id("any").name("Any")
+        .description("Blocks to mine with any tool")
+        .collection<String>().separator(':').build(mutableListOf())
 }

@@ -19,14 +19,14 @@ package cn.enaium.onekeyminer.config
 /**
  * @author Enaium
  */
-enum class Shape {
-    CUBE,
-    HORIZONTAL_PLANE,
-    VERTICAL_PLANE,
-    COLUMN,
-    SPHERE,
-    TUNNEL,
-    PYRAMID,
-    DIAMOND,
-    CONE
+enum class Shape(val key: String) {
+    CUBE("onekeyminer.shape.cube"),
+    HORIZONTAL_PLANE("onekeyminer.shape.horizontal_plane"),
+    VERTICAL_PLANE("onekeyminer.shape.vertical_plane"),
+    COLUMN("onekeyminer.shape.column"),
+    SPHERE("onekeyminer.shape.sphere"),
+    TUNNEL("onekeyminer.shape.tunnel"),
+    PYRAMID("onekeyminer.shape.pyramid"),
+    DIAMOND("onekeyminer.shape.diamond"),
+    CONE("onekeyminer.shape.cone")
 }

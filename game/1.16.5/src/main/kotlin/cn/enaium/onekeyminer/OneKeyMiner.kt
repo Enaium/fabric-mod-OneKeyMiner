@@ -24,102 +24,96 @@ import cn.enaium.onekeyminer.config.OneKeyMinerConfig
 const val ID = "onekeyminer"
 
 fun initializer() {
-    if (OneKeyMinerConfig.axe.value.isEmpty()) {
-        OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(
-            defaultValue = mutableListOf(
-                "minecraft:warped_stem",
-                "minecraft:crimson_stem",
-                "minecraft:oak_log",
-                "minecraft:birch_log",
-                "minecraft:spruce_log",
-                "minecraft:jungle_log",
-                "minecraft:dark_oak_log",
-                "minecraft:acacia_log",
-                "minecraft:oak_leaves",
-                "minecraft:spruce_leaves",
-                "minecraft:birch_leaves",
-                "minecraft:jungle_leaves",
-                "minecraft:acacia_leaves",
-                "minecraft:dark_oak_leaves"
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(
+        defaultValue = mutableListOf(
+            "minecraft:warped_stem",
+            "minecraft:crimson_stem",
+            "minecraft:oak_log",
+            "minecraft:birch_log",
+            "minecraft:spruce_log",
+            "minecraft:jungle_log",
+            "minecraft:dark_oak_log",
+            "minecraft:acacia_log",
+            "minecraft:oak_leaves",
+            "minecraft:spruce_leaves",
+            "minecraft:birch_leaves",
+            "minecraft:jungle_leaves",
+            "minecraft:acacia_leaves",
+            "minecraft:dark_oak_leaves"
         )
-    }
+    )
 
-    if (OneKeyMinerConfig.hoe.value.isEmpty()) {
-        OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(
-            defaultValue = mutableListOf(
-                "minecraft:oak_leaves",
-                "minecraft:spruce_leaves",
-                "minecraft:birch_leaves",
-                "minecraft:jungle_leaves",
-                "minecraft:acacia_leaves",
-                "minecraft:dark_oak_leaves",
-                "minecraft:sponge",
-                "minecraft:wet_sponge",
-                "minecraft:hay_block",
-                "minecraft:nether_wart_block",
-                "minecraft:dried_kelp_block",
-                "minecraft:warped_wart_block",
-                "minecraft:shroomlight"
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(
+        defaultValue = mutableListOf(
+            "minecraft:oak_leaves",
+            "minecraft:spruce_leaves",
+            "minecraft:birch_leaves",
+            "minecraft:jungle_leaves",
+            "minecraft:acacia_leaves",
+            "minecraft:dark_oak_leaves",
+            "minecraft:sponge",
+            "minecraft:wet_sponge",
+            "minecraft:hay_block",
+            "minecraft:nether_wart_block",
+            "minecraft:dried_kelp_block",
+            "minecraft:warped_wart_block",
+            "minecraft:shroomlight"
         )
-    }
+    )
 
-    if (OneKeyMinerConfig.pickaxe.value.isEmpty()) {
-        OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
-            defaultValue = mutableListOf(
-                "minecraft:gold_ore",
-                "minecraft:iron_ore",
-                "minecraft:coal_ore",
-                "minecraft:nether_gold_ore",
-                "minecraft:lapis_ore",
-                "minecraft:diamond_ore",
-                "minecraft:redstone_ore",
-                "minecraft:emerald_ore",
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
+        defaultValue = mutableListOf(
+            "minecraft:gold_ore",
+            "minecraft:iron_ore",
+            "minecraft:coal_ore",
+            "minecraft:nether_gold_ore",
+            "minecraft:lapis_ore",
+            "minecraft:diamond_ore",
+            "minecraft:redstone_ore",
+            "minecraft:emerald_ore",
         )
-    }
+    )
 
-    if (OneKeyMinerConfig.pickaxe.value.isEmpty()) {
-        OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
-            defaultValue = mutableListOf(
-                "minecraft:gold_ore",
-                "minecraft:iron_ore",
-                "minecraft:coal_ore",
-                "minecraft:nether_gold_ore",
-                "minecraft:lapis_ore",
-                "minecraft:diamond_ore",
-                "minecraft:redstone_ore",
-                "minecraft:emerald_ore",
-                "minecraft:nether_quartz_ore"
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(
+        defaultValue = mutableListOf(
+            "minecraft:gold_ore",
+            "minecraft:iron_ore",
+            "minecraft:coal_ore",
+            "minecraft:nether_gold_ore",
+            "minecraft:lapis_ore",
+            "minecraft:diamond_ore",
+            "minecraft:redstone_ore",
+            "minecraft:emerald_ore",
+            "minecraft:nether_quartz_ore"
         )
+    )
 
-    }
 
-    if (OneKeyMinerConfig.shovel.value.isEmpty()) {
-        OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(
-            defaultValue = mutableListOf(
-                "minecraft:sand",
-                "minecraft:red_sand",
-                "minecraft:snow",
-                "minecraft:snow_block",
-                "minecraft:clay",
-                "minecraft:soul_sand"
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.shovel = OneKeyMinerConfig.shovel.copy(
+        defaultValue = mutableListOf(
+            "minecraft:sand",
+            "minecraft:red_sand",
+            "minecraft:snow",
+            "minecraft:snow_block",
+            "minecraft:clay",
+            "minecraft:soul_sand"
         )
-    }
+    )
 
-    if (OneKeyMinerConfig.shears.value.isEmpty()) {
-        OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(
-            defaultValue = mutableListOf(
-                "minecraft:oak_leaves",
-                "minecraft:spruce_leaves",
-                "minecraft:birch_leaves",
-                "minecraft:jungle_leaves",
-                "minecraft:acacia_leaves",
-                "minecraft:dark_oak_leaves"
-            )
+    // The built-in blocks are the default value of the conf, so a reset restores them.
+    OneKeyMinerConfig.shears = OneKeyMinerConfig.shears.copy(
+        defaultValue = mutableListOf(
+            "minecraft:oak_leaves",
+            "minecraft:spruce_leaves",
+            "minecraft:birch_leaves",
+            "minecraft:jungle_leaves",
+            "minecraft:acacia_leaves",
+            "minecraft:dark_oak_leaves"
         )
-    }
+    )
 }

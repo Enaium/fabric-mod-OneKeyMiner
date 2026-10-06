@@ -27,7 +27,7 @@ object Commands {
     @JvmStatic
     fun initializer() {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { _, _ ->
-            val map = Registry.ENCHANTMENT.ids.map { it.toString() }.toList()
+            val map = Registry.BLOCK.ids.map { it.toString() }.toList()
             OneKeyMinerConfig.axe = OneKeyMinerConfig.axe.copy(options = map)
             OneKeyMinerConfig.hoe = OneKeyMinerConfig.hoe.copy(options = map)
             OneKeyMinerConfig.pickaxe = OneKeyMinerConfig.pickaxe.copy(options = map)

@@ -7,19 +7,29 @@ plugins {
 
 afterEvaluate {
     publishMods {
-        val disableObfuscation = properties.getOrDefault("fabric.loom.disableObfuscation", false).toString().toBoolean()
+        val disableObfuscation = (findProperty("fabric.loom.disableObfuscation") ?: false).toString().toBoolean()
         file = tasks.named<AbstractArchiveTask>(if (disableObfuscation) "jar" else "remapJar").get().archiveFile.get()
         type = STABLE
         displayName = "OneKeyMiner ${project.version}"
         changelog = rootProject.file("changelog.md").readText(Charsets.UTF_8)
-        modLoaders.add("fabric")
+        val version = VersionNumber.parse(findProperty("minecraft.version").toString())
+        // Modrinth only takes the fabric loader from 18w43b (1.14) on, so a version below it is published
+        // as legacy fabric, the loader such a build is written against anyway.
+        val modrinthPublishing = gradle.startParameter.taskNames.any {
+            it.substringAfterLast(':').let { name -> name == "publishModrinth" || name == "publishMods" }
+        }
+        modLoaders.add(
+            if (modrinthPublishing && version < VersionNumber.parse("1.14.4")) "legacy-fabric" else "fabric"
+        )
 
-        val modern = VersionNumber.parse(properties["minecraft.version"].toString()) >= VersionNumber.parse("1.14")
+        val modern = version >= VersionNumber.parse("1.14")
 
         curseforge {
             projectId = "626666"
             accessToken = providers.gradleProperty("curseforge.token")
             minecraftVersions.add(property("minecraft.version").toString())
+            clientRequired = true
+            serverRequired = true
             requires("fabric-language-kotlin", "mineconf", if (modern) "fabric-api" else "legacy-fabric-api")
         }
 
